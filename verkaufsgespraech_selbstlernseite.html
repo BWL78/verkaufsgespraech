@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Das Verkaufsgespr&auml;ch &ndash; 8 Phasen</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#1a1a2e;--bg:#f5f0e8;--light:#faf7f2;--teal:#2d6e7e;--teal-l:#e4f0f3;
+--gold:#b8860b;--gold-l:#fdf6dc;--red:#c84b31;--red-l:#fdecea;--green:#2e7d32;--green-l:#e8f5e9;
+--border:#d4c8a8;--shadow:0 2px 8px rgba(26,26,46,.1);--r:6px;}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);line-height:1.7;}
+header{background:var(--ink);color:#fff;padding:1.7rem 1.5rem 1.4rem;text-align:center;}
+header .bc{font-family:'Trebuchet MS',sans-serif;font-size:.75rem;color:#8ca0be;margin-bottom:.4rem;}
+header h1{font-size:1.7rem;font-weight:normal;margin-bottom:.3rem;}
+header .desc{font-family:'Trebuchet MS',sans-serif;font-size:.83rem;color:#b0c0d8;max-width:620px;margin:0 auto;}
+.ps{background:#0d1124;padding:.5rem 1.5rem;display:flex;align-items:center;gap:.8rem;}
+.ps .lbl{font-family:'Trebuchet MS',sans-serif;font-size:.75rem;color:#8ca0be;white-space:nowrap;}
+.pb{flex:1;background:#2a3050;border-radius:99px;height:5px;}
+.pb-fill{height:100%;background:var(--teal);border-radius:99px;width:0;transition:width .4s;}
+.pb-pct{font-family:'Trebuchet MS',sans-serif;font-size:.75rem;color:#8ca0be;min-width:3.4rem;text-align:right;}
+nav.tabs{background:#fff;border-bottom:2px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:50;}
+nav.tabs::-webkit-scrollbar{display:none;}
+nav.tabs button{flex:0 0 auto;background:none;border:none;padding:.62rem .8rem;font-family:'Trebuchet MS',sans-serif;font-size:.75rem;font-weight:600;color:#666;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;}
+nav.tabs button.active,nav.tabs button:hover{color:var(--teal);border-bottom-color:var(--teal);}
+nav.tabs button.done::after{content:' \2713';color:var(--green);font-size:.7rem;}
+main{max-width:900px;margin:0 auto;padding:1.4rem 1rem 3rem;}
+.tab-panel{display:none;scroll-margin-top:50px;}.tab-panel.active{display:block;}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 1.4rem;margin-bottom:1rem;box-shadow:var(--shadow);scroll-margin-top:50px;}
+.card h2{font-size:1.02rem;color:var(--teal);margin-bottom:.6rem;}
+.card p,.card li{font-size:.92rem;line-height:1.72;margin-bottom:.28rem;}
+.card ul{padding-left:1.2rem;margin:.3rem 0;}
+.ph-kopf{color:#fff;border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:1rem;display:flex;align-items:center;gap:.9rem;}
+.ph-nr{background:rgba(255,255,255,.92);color:inherit;width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Trebuchet MS',sans-serif;font-weight:700;font-size:1.2rem;flex-shrink:0;color:#1a1a2e;}
+.ph-kopf h2{color:#fff;font-size:1.15rem;margin:0 0 .15rem;}
+.ph-kopf p{font-family:'Trebuchet MS',sans-serif;font-size:.82rem;color:rgba(255,255,255,.88);margin:0;}
+ul.tun,ul.fehler{list-style:none;padding-left:0;}
+ul.tun li,ul.fehler li{position:relative;padding-left:1.7rem;margin-bottom:.4rem;font-size:.91rem;line-height:1.65;}
+ul.tun li::before{content:'\2713';position:absolute;left:0;top:0;color:var(--green);font-weight:700;font-size:1rem;}
+ul.fehler li::before{content:'\2717';position:absolute;left:0;top:0;color:var(--red);font-weight:700;font-size:1rem;}
+.saetze{display:flex;flex-direction:column;gap:.45rem;margin:.4rem 0;}
+.satz{background:var(--teal-l);border-left:4px solid var(--teal);border-radius:0 var(--r) var(--r) 0;padding:.55rem .85rem;font-size:.92rem;font-style:italic;color:#1e4a56;}
+.satz::before{content:'\201E';}.satz::after{content:'\201C';}
+.merke{background:var(--gold-l);border:1.5px solid var(--gold);border-radius:var(--r);padding:.65rem .9rem;margin-top:.7rem;font-size:.9rem;position:relative;padding-top:.9rem;}
+.merke::before{content:'Merke';position:absolute;top:-.6rem;left:.8rem;background:var(--gold);color:#fff;font-family:'Trebuchet MS',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.1rem .5rem;border-radius:3px;}
+.info-gold{background:var(--gold-l);border-left:4px solid var(--gold);border-radius:0 var(--r) var(--r) 0;padding:.7rem 1rem;margin:.6rem 0;font-size:.9rem;}
+.info-teal{background:var(--teal-l);border-left:4px solid var(--teal);border-radius:0 var(--r) var(--r) 0;padding:.7rem 1rem;margin:.6rem 0;font-size:.9rem;}
+table.t{width:100%;border-collapse:collapse;font-size:.87rem;margin:.6rem 0;}
+table.t th{background:var(--ink);color:#fff;font-family:'Trebuchet MS',sans-serif;font-size:.78rem;padding:.45rem .6rem;text-align:left;}
+table.t td{padding:.45rem .6rem;border-bottom:1px solid var(--border);vertical-align:middle;line-height:1.5;overflow-wrap:break-word;}
+table.t tr:nth-child(even) td{background:var(--light);}
+table.t td.z{text-align:center;}
+.pnum{display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:50%;color:#fff;font-family:'Trebuchet MS',sans-serif;font-weight:700;font-size:.8rem;}
+#tr-svg{width:100%;max-width:900px;display:block;margin:0 auto;}
+.sort-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.45rem;}
+.sort-sel{border:1.5px solid var(--border);border-radius:4px;padding:.32rem .4rem;font-size:.9rem;width:64px;background:#fff;text-align:center;}
+.sort-sel.ok{border-color:var(--green);background:var(--green-l);}
+.sort-sel.nok{border-color:var(--red);background:var(--red-l);}
+.sort-lbl{font-size:.92rem;border-left:4px solid var(--border);padding-left:.6rem;flex:1;}
+.sort-fb{display:none;margin-top:.7rem;padding:.55rem .85rem;border-radius:var(--r);font-size:.89rem;line-height:1.6;}
+.sort-fb.show{display:block;}
+.sort-fb.ok{background:var(--green-l);border-left:4px solid var(--green);color:#1b5e20;}
+.sort-fb.nok{background:var(--red-l);border-left:4px solid var(--red);color:#b71c1c;}
+.check-btn{font-family:'Trebuchet MS',sans-serif;font-size:.82rem;font-weight:700;background:var(--teal);color:#fff;border:none;border-radius:4px;padding:.42rem .95rem;cursor:pointer;}
+.check-btn:hover{background:#235a68;}
+.check-btn.grau{background:#777;}.check-btn.grau:hover{background:#5f5f5f;}
+.zu-block{background:var(--light);border:1px solid var(--border);border-radius:var(--r);padding:.75rem .95rem;margin-bottom:.5rem;scroll-margin-top:50px;}
+.zu-nr{font-family:'Trebuchet MS',sans-serif;font-size:.72rem;font-weight:700;color:var(--teal);margin-bottom:.22rem;}
+.zu-text{font-size:.95rem;margin-bottom:.45rem;line-height:1.6;font-style:italic;overflow-wrap:break-word;}
+.zu-sel{background:#fff;border:1.5px solid var(--border);border-radius:4px;padding:.32rem .55rem;font-size:.87rem;width:100%;max-width:280px;}
+.zu-sel.ok{border-color:var(--green);background:var(--green-l);}
+.zu-sel.nok{border-color:var(--red);background:var(--red-l);}
+.zu-fb{font-size:.84rem;margin-top:.35rem;line-height:1.55;display:none;padding:.42rem .7rem;border-radius:4px;overflow-wrap:break-word;}
+.zu-fb.show{display:block;}
+.zu-fb.ok{background:var(--green-l);border-left:3px solid var(--green);color:#1b5e20;}
+.zu-fb.nok{background:var(--red-l);border-left:3px solid var(--red);color:#b71c1c;}
+.aufg-block{background:var(--light);border:1px solid var(--border);border-radius:var(--r);padding:.8rem 1rem;margin-bottom:.55rem;}
+.aufg-nr{font-family:'Trebuchet MS',sans-serif;font-size:.72rem;font-weight:700;color:var(--teal);margin-bottom:.25rem;}
+.aufg-frage{font-size:.93rem;margin-bottom:.45rem;line-height:1.6;overflow-wrap:break-word;hyphens:auto;font-weight:600;}
+.aufg-opts{display:flex;flex-direction:column;gap:.28rem;}
+.aufg-btn{width:100%;white-space:normal;overflow-wrap:break-word;hyphens:auto;background:#fff;border:1.5px solid var(--border);border-radius:4px;padding:.5rem .8rem;font-size:.88rem;font-family:Georgia,serif;text-align:left;cursor:pointer;line-height:1.5;}
+.aufg-btn:hover:not(:disabled){background:var(--teal-l);border-color:var(--teal);}
+.aufg-btn.correct{background:var(--green-l);border-color:var(--green);color:var(--green);font-weight:600;}
+.aufg-btn.wrong{background:var(--red-l);border-color:var(--red);color:var(--red);}
+.aufg-btn:disabled{cursor:default;opacity:.92;}
+.aufg-fb{margin-top:.45rem;padding:.45rem .75rem;border-radius:4px;font-size:.86rem;line-height:1.6;display:none;overflow-wrap:break-word;}
+.aufg-fb.show{display:block;}
+.aufg-fb.correct{background:var(--green-l);border-left:3px solid var(--green);color:#1b5e20;}
+.aufg-fb.wrong{background:var(--red-l);border-left:3px solid var(--red);color:#b71c1c;}
+.quiz-block{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:.9rem;box-shadow:var(--shadow);scroll-margin-top:50px;}
+.quiz-nr{font-family:'Trebuchet MS',sans-serif;font-size:.74rem;color:var(--teal);font-weight:700;margin-bottom:.25rem;}
+.quiz-frage{font-size:.95rem;font-weight:600;margin-bottom:.65rem;line-height:1.6;overflow-wrap:break-word;hyphens:auto;}
+.mc-opts{display:flex;flex-direction:column;gap:.3rem;}
+.mc-btn{width:100%;white-space:normal;overflow-wrap:break-word;hyphens:auto;background:var(--light);border:1.5px solid var(--border);border-radius:var(--r);padding:.5rem .82rem;font-size:.89rem;font-family:Georgia,serif;text-align:left;cursor:pointer;line-height:1.5;}
+.mc-btn:hover:not(:disabled){background:var(--teal-l);border-color:var(--teal);}
+.mc-btn.correct{background:var(--green-l);border-color:var(--green);color:var(--green);font-weight:600;}
+.mc-btn.wrong{background:var(--red-l);border-color:var(--red);color:var(--red);}
+.mc-btn:disabled{cursor:default;opacity:.92;}
+.fb-box{margin-top:.5rem;padding:.55rem .82rem;border-radius:var(--r);font-size:.86rem;line-height:1.6;display:none;overflow-wrap:break-word;}
+.fb-box.show{display:block;}
+.fb-box.correct{background:var(--green-l);border-left:4px solid var(--green);color:#1b5e20;}
+.fb-box.wrong{background:var(--red-l);border-left:4px solid var(--red);color:#b71c1c;}
+.result-card{background:#fff;border:2px solid var(--teal);border-radius:var(--r);padding:1.4rem;text-align:center;}
+.result-score{font-size:1.35rem;color:#555;font-family:'Trebuchet MS',sans-serif;}
+.result-note{font-size:2.4rem;font-weight:700;color:var(--teal);margin:.3rem 0;}
+.result-txt{font-size:.95rem;color:#444;margin-top:.3rem;}
+.tab-nav{display:flex;justify-content:space-between;margin-top:1.3rem;border-top:1px solid var(--border);padding-top:.85rem;gap:.5rem;}
+.btn-nav{font-family:'Trebuchet MS',sans-serif;font-size:.79rem;font-weight:700;padding:.42rem .85rem;border-radius:4px;border:1.5px solid var(--teal);color:var(--teal);background:transparent;cursor:pointer;}
+.btn-nav:hover{background:var(--teal);color:#fff;}
+.btn-nav.primary{background:var(--teal);color:#fff;}
+@media print{nav.tabs,.ps,.tab-nav{display:none!important;}.tab-panel{display:block!important;}
+.card{box-shadow:none!important;break-inside:avoid;}body{background:#fff!important;}@page{margin:1.5cm;}}
+@media(max-width:600px){header h1{font-size:1.32rem;}main{padding:1rem .7rem 2.5rem;}
+.aufg-btn,.mc-btn{font-size:.87rem;padding:.5rem .65rem;}
+.ph-kopf{gap:.7rem;padding:.85rem .95rem;}.ph-kopf h2{font-size:1.02rem;}}
+</style>
+</head>
+<body>
+<header>
+<div class="bc">Verk&auml;uferin und Verk&auml;ufer &rsaquo; 1. Lehrjahr &rsaquo; Lernfeld 2</div>
+<h1>Das Verkaufsgespr&auml;ch</h1>
+<p class="desc">Die acht Phasen von der Begr&uuml;&szlig;ung bis zur Verabschiedung &ndash; mit Infos, Formulierungen und &Uuml;bungen zu jeder Phase</p>
+</header>
+<div class="ps"><span class="lbl">Quiz-Fortschritt:</span>
+<div class="pb"><div class="pb-fill" id="pb-fill"></div></div>
+<span class="pb-pct" id="pb-pct">0 / 12</span></div>
+<nav class="tabs">
+<button class="active" data-tab="ueberblick">&Uuml;berblick</button>
+<button data-tab="kontakt">1 &ndash; Kontakt</button><button data-tab="bedarf">2 &ndash; Bedarf</button><button data-tab="vorlage">3 &ndash; Warenvorlage</button><button data-tab="argument">4 &ndash; Argumentation</button><button data-tab="preis">5 &ndash; Preis</button><button data-tab="einwand">6 &ndash; Einw&#228;nde</button><button data-tab="abschluss">7 &ndash; Abschluss</button><button data-tab="zusatz">8 &ndash; Zusatzverkauf</button><button data-tab="uebung">&Uuml;bung</button>
+<button data-tab="quiz">Quiz</button>
+</nav>
+<main>
+
+<section class="tab-panel active" id="tab-ueberblick">
+<div class="card">
+<h2>Warum ein Phasenmodell?</h2>
+<p>Ein gutes Verkaufsgespr&auml;ch l&auml;uft nicht zuf&auml;llig ab. Es folgt einem <strong>roten Faden</strong> &ndash; und der besteht aus acht Phasen, die aufeinander aufbauen.</p>
+<div class="info-gold"><strong>Warum die Reihenfolge wichtig ist:</strong> Du kannst keine passende Ware vorlegen, wenn du den Bedarf nicht kennst. Und du kannst keinen Preis rechtfertigen, wenn der Kunde den Nutzen noch nicht sieht. Jede Phase bereitet die n&auml;chste vor.</p></div>
+<div class="info-teal">In der Praxis gehen die Phasen ineinander &uuml;ber. Manchmal springst du auch zur&uuml;ck &ndash; etwa wenn ein Einwand zeigt, dass du den Bedarf noch nicht ganz getroffen hast. Das Modell ist ein <strong>Leitfaden</strong>, kein starres Schema.</div>
+</div>
+
+<div class="card">
+<h2>Die acht Phasen im &Uuml;berblick</h2>
+<p style="font-size:.86rem;color:#666;margin-bottom:.6rem;">Klicke auf eine Stufe, um Ziel und Beispielsatz zu sehen.</p>
+<svg id="tr-svg" viewBox="0 0 880 430" xmlns="http://www.w3.org/2000/svg"><style>.tr-stufe{cursor:pointer;}.tr-stufe:hover rect{opacity:.85;}.tr-stufe.aktiv rect{stroke:#1a1a2e;stroke-width:2.5;}</style><g class="tr-stufe" data-ph="kontakt"><rect x="20" y="370" width="196" height="40" rx="5" fill="#1565c0"/><circle cx="40" cy="390" r="12" fill="#fff" opacity=".92"/><text x="40" y="394.5" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">1</text><text x="60" y="394.5" font-size="11" font-weight="bold" fill="#fff">Kontakt</text></g><g class="tr-stufe" data-ph="bedarf"><rect x="102" y="326" width="196" height="40" rx="5" fill="#00838f"/><circle cx="122" cy="346" r="12" fill="#fff" opacity=".92"/><text x="122" y="350.5" text-anchor="middle" font-size="12" font-weight="bold" fill="#00838f">2</text><text x="142" y="350.5" font-size="11" font-weight="bold" fill="#fff">Bedarf</text></g><g class="tr-stufe" data-ph="vorlage"><rect x="184" y="282" width="196" height="40" rx="5" fill="#2e7d32"/><circle cx="204" cy="302" r="12" fill="#fff" opacity=".92"/><text x="204" y="306.5" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">3</text><text x="224" y="306.5" font-size="11" font-weight="bold" fill="#fff">Warenvorlage</text></g><g class="tr-stufe" data-ph="argument"><rect x="266" y="238" width="196" height="40" rx="5" fill="#7b1fa2"/><circle cx="286" cy="258" r="12" fill="#fff" opacity=".92"/><text x="286" y="262.5" text-anchor="middle" font-size="12" font-weight="bold" fill="#7b1fa2">4</text><text x="306" y="262.5" font-size="11" font-weight="bold" fill="#fff">Argumentation</text></g><g class="tr-stufe" data-ph="preis"><rect x="348" y="194" width="196" height="40" rx="5" fill="#b8860b"/><circle cx="368" cy="214" r="12" fill="#fff" opacity=".92"/><text x="368" y="218.5" text-anchor="middle" font-size="12" font-weight="bold" fill="#b8860b">5</text><text x="388" y="218.5" font-size="11" font-weight="bold" fill="#fff">Preis</text></g><g class="tr-stufe" data-ph="einwand"><rect x="430" y="150" width="196" height="40" rx="5" fill="#e65100"/><circle cx="450" cy="170" r="12" fill="#fff" opacity=".92"/><text x="450" y="174.5" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">6</text><text x="470" y="174.5" font-size="11" font-weight="bold" fill="#fff">Einw&#228;nde</text></g><g class="tr-stufe" data-ph="abschluss"><rect x="512" y="106" width="196" height="40" rx="5" fill="#c84b31"/><circle cx="532" cy="126" r="12" fill="#fff" opacity=".92"/><text x="532" y="130.5" text-anchor="middle" font-size="12" font-weight="bold" fill="#c84b31">7</text><text x="552" y="130.5" font-size="11" font-weight="bold" fill="#fff">Abschluss</text></g><g class="tr-stufe" data-ph="zusatz"><rect x="594" y="62" width="196" height="40" rx="5" fill="#546e7a"/><circle cx="614" cy="82" r="12" fill="#fff" opacity=".92"/><text x="614" y="86.5" text-anchor="middle" font-size="12" font-weight="bold" fill="#546e7a">8</text><text x="634" y="86.5" font-size="11" font-weight="bold" fill="#fff">Zusatzverkauf</text></g><text x="440" y="422" text-anchor="middle" fill="#999" font-size="10" font-family="Trebuchet MS,sans-serif">Klicke auf eine Stufe f&#252;r Ziel und Beispielsatz</text></svg><div id="tr-info" style="display:none;margin-top:.9rem;background:#fff;border:2px solid var(--teal);border-radius:var(--r);padding:1rem 1.2rem;scroll-margin-top:60px;">
+<strong id="tr-titel" style="font-family:'Trebuchet MS',sans-serif;font-size:1rem;display:block;margin-bottom:.4rem;"></strong>
+<p style="font-size:.92rem;margin-bottom:.5rem;" id="tr-ziel"></p>
+<div id="tr-bsp" style="font-size:.9rem;color:#444;font-style:italic;background:var(--light);border-left:3px solid var(--border);padding:.5rem .8rem;border-radius:0 4px 4px 0;"></div>
+<button id="tr-go" class="btn-nav primary" style="margin-top:.7rem;"></button>
+</div>
+</div>
+
+<div class="card">
+<h2>Auf einen Blick</h2>
+<table class="t">
+<thead><tr><th class="z">Nr.</th><th>Phase</th><th>Ziel</th></tr></thead>
+<tbody><tr><td class="z"><span class="pnum" style="background:#1565c0;">1</span></td><td><strong>Kontaktaufnahme</strong></td><td>Einen freundlichen ersten Eindruck schaffen und dem Kunden zeigen: Ich habe dich gesehen.</td></tr><tr><td class="z"><span class="pnum" style="background:#00838f;">2</span></td><td><strong>Bedarfsermittlung</strong></td><td>Herausfinden, was der Kunde wirklich braucht - durch Fragen und Zuh&#246;ren.</td></tr><tr><td class="z"><span class="pnum" style="background:#2e7d32;">3</span></td><td><strong>Warenvorlage</strong></td><td>Zwei bis drei passende Artikel zeigen und den Kunden anfassen lassen.</td></tr><tr><td class="z"><span class="pnum" style="background:#7b1fa2;">4</span></td><td><strong>Verkaufsargumentation</strong></td><td>Merkmale der Ware in einen Nutzen f&#252;r den Kunden &#252;bersetzen.</td></tr><tr><td class="z"><span class="pnum" style="background:#b8860b;">5</span></td><td><strong>Preisnennung</strong></td><td>Den Preis klar nennen, eingebettet zwischen zwei Nutzenargumenten.</td></tr><tr><td class="z"><span class="pnum" style="background:#e65100;">6</span></td><td><strong>Einwandbehandlung</strong></td><td>Bedenken des Kunden ernst nehmen und sachlich ausr&#228;umen.</td></tr><tr><td class="z"><span class="pnum" style="background:#c84b31;">7</span></td><td><strong>Kaufabschluss</strong></td><td>Kaufsignale erkennen und die Entscheidung herbeif&#252;hren.</td></tr><tr><td class="z"><span class="pnum" style="background:#546e7a;">8</span></td><td><strong>Zusatzverkauf und Verabschiedung</strong></td><td>Passende Erg&#228;nzung anbieten und freundlich verabschieden.</td></tr>
+</tbody></table>
+</div>
+<div class="tab-nav"><span></span><button class="btn-nav primary" data-goto="kontakt">Los geht es: Phase 1 &rarr;</button></div>
+</section>
+<section class="tab-panel" id="tab-kontakt">
+<div class="ph-kopf" style="background:#1565c0;">
+<span class="ph-nr">1</span>
+<div><h2>Kontaktaufnahme</h2><p>Einen freundlichen ersten Eindruck schaffen und dem Kunden zeigen: Ich habe dich gesehen.</p></div></div>
+
+<div class="card">
+<h2>Was du tun solltest</h2>
+<ul class="tun"><li>Sofort Blickkontakt aufnehmen, wenn der Kunde den Laden betritt</li><li>Der Tageszeit entsprechend gr&uuml;&szlig;en</li><li>Die eigene T&auml;tigkeit unterbrechen und sich zuwenden</li><li>Offene K&ouml;rperhaltung, freundlicher Gesichtsausdruck</li><li>Stammkunden mit Namen ansprechen</li></ul>
+</div>
+
+<div class="card">
+<h2>H&auml;ufige Fehler</h2>
+<ul class="fehler"><li>Weiterarbeiten und den Kunden ignorieren</li><li>Das Handy in der Hand behalten</li><li>Verschr&auml;nkte Arme oder H&auml;nde in den Taschen</li><li>Sofort bedr&auml;ngen, ohne dem Kunden Zeit zur Orientierung zu lassen</li></ul>
+</div>
+
+<div class="card">
+<h2>Formulierungen f&uuml;r die Praxis</h2>
+<div class="saetze"><div class="satz">Guten Tag! Sch&ouml;n, dass Sie da sind.</div><div class="satz">Guten Morgen! Schauen Sie sich gerne in Ruhe um &ndash; ich bin gleich f&uuml;r Sie da.</div><div class="satz">Hallo Frau Berger, sch&ouml;n Sie wiederzusehen!</div></div>
+<div class="merke">Der erste Eindruck entsteht in den ersten Sekunden &ndash; und du bekommst keine zweite Chance daf&uuml;r. K&ouml;rpersprache wirkt dabei st&auml;rker als jedes Wort.</div>
+</div>
+
+<div class="card" style="border-color:#1565c0;">
+<h2>&Uuml;bungsaufgaben zu Phase 1</h2>
+<div id="aufg-kontakt"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="ueberblick">&larr; &Uuml;berblick</button><button class="btn-nav primary" data-goto="bedarf">Phase 2: Bedarf &rarr;</button></div>
+</section><section class="tab-panel" id="tab-bedarf">
+<div class="ph-kopf" style="background:#00838f;">
+<span class="ph-nr">2</span>
+<div><h2>Bedarfsermittlung</h2><p>Herausfinden, was der Kunde wirklich braucht - durch Fragen und Zuh&#246;ren.</p></div></div>
+
+<div class="card">
+<h2>Was du tun solltest</h2>
+<ul class="tun"><li>Offene Fragen stellen (wer, was, wie, wof&uuml;r, warum)</li><li>Aktiv zuh&ouml;ren: ausreden lassen, nicken, nachfragen</li><li>Am Ende zusammenfassen: &bdquo;Habe ich Sie richtig verstanden &hellip;&ldquo;</li><li>Geschlossene Fragen erst zum Schluss, um Einzelheiten zu kl&auml;ren</li></ul>
+</div>
+
+<div class="card">
+<h2>H&auml;ufige Fehler</h2>
+<ul class="fehler"><li>Sofort Ware zeigen, ohne den Bedarf zu kennen</li><li>Nur mit Ja-Nein-Fragen arbeiten</li><li>Den Kunden unterbrechen</li><li>&bdquo;Kann ich Ihnen helfen?&ldquo; &ndash; l&auml;dt zum kurzen Nein ein</li></ul>
+</div>
+
+<div class="card">
+<h2>Formulierungen f&uuml;r die Praxis</h2>
+<div class="saetze"><div class="satz">Wof&uuml;r m&ouml;chten Sie die Schuhe haupts&auml;chlich nutzen?</div><div class="satz">Was ist Ihnen dabei besonders wichtig?</div><div class="satz">Wie oft werden Sie die Jacke voraussichtlich tragen?</div><div class="satz">Habe ich Sie richtig verstanden: Sie suchen etwas Wasserdichtes f&uuml;rs Radfahren?</div></div>
+<div class="merke">Erst offene Fragen zum Erkunden, dann geschlossene Fragen zum Festlegen. Wer den Bedarf nicht kennt, ber&auml;t auf gut Gl&uuml;ck.</div>
+</div>
+
+<div class="card" style="border-color:#00838f;">
+<h2>&Uuml;bungsaufgaben zu Phase 2</h2>
+<div id="aufg-bedarf"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="kontakt">&larr; Phase 1</button><button class="btn-nav primary" data-goto="vorlage">Phase 3: Warenvorlage &rarr;</button></div>
+</section><section class="tab-panel" id="tab-vorlage">
+<div class="ph-kopf" style="background:#2e7d32;">
+<span class="ph-nr">3</span>
+<div><h2>Warenvorlage</h2><p>Zwei bis drei passende Artikel zeigen und den Kunden anfassen lassen.</p></div></div>
+
+<div class="card">
+<h2>Was du tun solltest</h2>
+<ul class="tun"><li>Zwei bis drei passende Artikel ausw&auml;hlen</li><li>Ware sorgf&auml;ltig auspacken und in die Hand geben</li><li>Den Kunden anfassen und ausprobieren lassen</li><li>Mit dem Artikel beginnen, der dem Bedarf am besten entspricht</li></ul>
+</div>
+
+<div class="card">
+<h2>H&auml;ufige Fehler</h2>
+<ul class="fehler"><li>Zu viele Artikel vorlegen &ndash; das &uuml;berfordert</li><li>Ware in der Verpackung lassen</li><li>Ware achtlos auf den Tresen legen</li><li>Bei fehlender Ware nur sagen: &bdquo;Haben wir nicht.&ldquo;</li></ul>
+</div>
+
+<div class="card">
+<h2>Formulierungen f&uuml;r die Praxis</h2>
+<div class="saetze"><div class="satz">Ich habe Ihnen zwei Modelle herausgesucht, die gut passen k&ouml;nnten.</div><div class="satz">Nehmen Sie den Schuh ruhig einmal in die Hand.</div><div class="satz">Dieses Modell f&uuml;hren wir aktuell nicht &ndash; daf&uuml;r h&auml;tte ich hier eine gleichwertige Alternative.</div></div>
+<div class="merke">Wer die Ware in der Hand h&auml;lt, entwickelt ein Besitzgef&uuml;hl. Das erh&ouml;ht die Kaufbereitschaft sp&uuml;rbar.</div>
+</div>
+
+<div class="card" style="border-color:#2e7d32;">
+<h2>&Uuml;bungsaufgaben zu Phase 3</h2>
+<div id="aufg-vorlage"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="bedarf">&larr; Phase 2</button><button class="btn-nav primary" data-goto="argument">Phase 4: Argumentation &rarr;</button></div>
+</section><section class="tab-panel" id="tab-argument">
+<div class="ph-kopf" style="background:#7b1fa2;">
+<span class="ph-nr">4</span>
+<div><h2>Verkaufsargumentation</h2><p>Merkmale der Ware in einen Nutzen f&#252;r den Kunden &#252;bersetzen.</p></div></div>
+
+<div class="card">
+<h2>Was du tun solltest</h2>
+<ul class="tun"><li>Merkmale in Nutzen &uuml;bersetzen</li><li>Zwei bis drei starke Argumente nennen, die zum Bedarf passen</li><li>Den Kunden selbst ausprobieren lassen</li><li>Auf die Sprache des Kunden achten &ndash; keine Fachbegriffe ohne Erkl&auml;rung</li></ul>
+</div>
+
+<div class="card">
+<h2>H&auml;ufige Fehler</h2>
+<ul class="fehler"><li>Nur technische Daten aufz&auml;hlen</li><li>Alle Vorteile nennen, auch die f&uuml;r diesen Kunden unwichtigen</li><li>&Uuml;bertreiben oder Eigenschaften erfinden</li><li>Andere Produkte oder Wettbewerber schlechtmachen</li></ul>
+</div>
+
+<div class="card">
+<h2>Formulierungen f&uuml;r die Praxis</h2>
+<div class="saetze"><div class="satz">Die Sohle ist rutschfest &ndash; so haben Sie auch bei N&auml;sse sicheren Halt.</div><div class="satz">Das Material ist atmungsaktiv, dadurch schwitzen Sie beim Wandern deutlich weniger.</div><div class="satz">Probieren Sie ruhig einmal, wie leicht sich der Verschluss &ouml;ffnen l&auml;sst.</div></div>
+<div class="merke">Kunden kaufen keine Merkmale &ndash; sie kaufen den Nutzen. Formuliere jedes Argument mit &bdquo;&hellip; dadurch haben Sie &hellip;&ldquo;</div>
+</div>
+
+<div class="card" style="border-color:#7b1fa2;">
+<h2>&Uuml;bungsaufgaben zu Phase 4</h2>
+<div id="aufg-argument"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="vorlage">&larr; Phase 3</button><button class="btn-nav primary" data-goto="preis">Phase 5: Preis &rarr;</button></div>
+</section><section class="tab-panel" id="tab-preis">
+<div class="ph-kopf" style="background:#b8860b;">
+<span class="ph-nr">5</span>
+<div><h2>Preisnennung</h2><p>Den Preis klar nennen, eingebettet zwischen zwei Nutzenargumenten.</p></div></div>
+
+<div class="card">
+<h2>Was du tun solltest</h2>
+<ul class="tun"><li>Den Preis erst nennen, wenn der Nutzen klar ist</li><li>Sandwich-Methode: Nutzen &ndash; Preis &ndash; Nutzen</li><li>Klar, deutlich und ohne Z&ouml;gern sprechen</li><li>Sachlich formulieren: &bdquo;Der Preis betr&auml;gt &hellip;&ldquo;</li></ul>
+</div>
+
+<div class="card">
+<h2>H&auml;ufige Fehler</h2>
+<ul class="fehler"><li>Den Preis zu fr&uuml;h nennen</li><li>Leise oder entschuldigend sprechen</li><li>W&ouml;rter wie &bdquo;leider&ldquo; oder &bdquo;nicht ganz billig&ldquo; verwenden</li><li>Von sich aus einen Rabatt anbieten</li></ul>
+</div>
+
+<div class="card">
+<h2>Formulierungen f&uuml;r die Praxis</h2>
+<div class="saetze"><div class="satz">Der Schuh ist komplett wasserdicht, kostet 89 Euro und Sie haben zwei Jahre Garantie darauf.</div><div class="satz">Der Preis betr&auml;gt 129 Euro.</div><div class="satz">Mit 45 Euro liegt die Tasche im mittleren Bereich &ndash; daf&uuml;r ist das Leder durchgen&auml;ht.</div></div>
+<div class="merke">Der Preis wirkt immer im Verh&auml;ltnis zum erkannten Nutzen. Baue erst den Wert auf, dann nenne die Zahl.</div>
+</div>
+
+<div class="card" style="border-color:#b8860b;">
+<h2>&Uuml;bungsaufgaben zu Phase 5</h2>
+<div id="aufg-preis"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="argument">&larr; Phase 4</button><button class="btn-nav primary" data-goto="einwand">Phase 6: Einw&#228;nde &rarr;</button></div>
+</section><section class="tab-panel" id="tab-einwand">
+<div class="ph-kopf" style="background:#e65100;">
+<span class="ph-nr">6</span>
+<div><h2>Einwandbehandlung</h2><p>Bedenken des Kunden ernst nehmen und sachlich ausr&#228;umen.</p></div></div>
+
+<div class="card">
+<h2>Was du tun solltest</h2>
+<ul class="tun"><li>Zuh&ouml;ren und ausreden lassen</li><li>Verst&auml;ndnis zeigen: &bdquo;Das kann ich gut verstehen.&ldquo;</li><li>Nachfragen, was genau dahintersteckt</li><li>Sachlich mit einem Nutzenargument antworten</li></ul>
+</div>
+
+<div class="card">
+<h2>H&auml;ufige Fehler</h2>
+<ul class="fehler"><li>Widersprechen oder den Kunden belehren</li><li>Den Einwand &uuml;berh&ouml;ren</li><li>Sofort einen Rabatt anbieten</li><li>Mit &bdquo;Ja, aber &hellip;&ldquo; beginnen &ndash; besser: &bdquo;Ja, und daf&uuml;r &hellip;&ldquo;</li></ul>
+</div>
+
+<div class="card">
+<h2>Formulierungen f&uuml;r die Praxis</h2>
+<div class="saetze"><div class="satz">Das kann ich gut verstehen. Womit vergleichen Sie den Preis denn?</div><div class="satz">Ja, das Modell ist etwas teurer &ndash; daf&uuml;r h&auml;lt es deutlich l&auml;nger.</div><div class="satz">Gibt es noch etwas, das Sie z&ouml;gern l&auml;sst?</div></div>
+<div class="merke">Ein Einwand ist kein Angriff, sondern ein Zeichen von Interesse. Wer gar nichts einwendet, hat oft schon innerlich abgeschlossen.</div>
+</div>
+
+<div class="card" style="border-color:#e65100;">
+<h2>&Uuml;bungsaufgaben zu Phase 6</h2>
+<div id="aufg-einwand"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="preis">&larr; Phase 5</button><button class="btn-nav primary" data-goto="abschluss">Phase 7: Abschluss &rarr;</button></div>
+</section><section class="tab-panel" id="tab-abschluss">
+<div class="ph-kopf" style="background:#c84b31;">
+<span class="ph-nr">7</span>
+<div><h2>Kaufabschluss</h2><p>Kaufsignale erkennen und die Entscheidung herbeif&#252;hren.</p></div></div>
+
+<div class="card">
+<h2>Was du tun solltest</h2>
+<ul class="tun"><li>Auf Kaufsignale achten</li><li>Alternativfrage stellen</li><li>Nach der Entscheidung mit dem Argumentieren aufh&ouml;ren</li><li>Die Entscheidung best&auml;tigen: &bdquo;Damit machen Sie nichts falsch.&ldquo;</li></ul>
+</div>
+
+<div class="card">
+<h2>H&auml;ufige Fehler</h2>
+<ul class="fehler"><li>Kaufsignale &uuml;bersehen und weiterreden</li><li>&bdquo;M&ouml;chten Sie kaufen?&ldquo; &ndash; l&auml;dt zum Nein ein</li><li>&bdquo;Wollen Sie es sich noch &uuml;berlegen?&ldquo; &ndash; schickt den Kunden raus</li><li>Mit Zeitdruck oder Rabatten dr&auml;ngen</li></ul>
+</div>
+
+<div class="card">
+<h2>Formulierungen f&uuml;r die Praxis</h2>
+<div class="saetze"><div class="satz">Soll ich Ihnen die Schuhe einpacken oder m&ouml;chten Sie sie gleich anbehalten?</div><div class="satz">Zahlen Sie bar oder mit Karte?</div><div class="satz">M&ouml;chten Sie das blaue oder das schwarze Modell?</div></div>
+<div class="merke">Kaufsignale sind Fragen zur Zeit <em>nach</em> dem Kauf: Lieferung, Garantie, Pflege, Zahlung. Dann ist der Moment f&uuml;r die Abschlussfrage.</div>
+</div>
+
+<div class="card" style="border-color:#c84b31;">
+<h2>&Uuml;bungsaufgaben zu Phase 7</h2>
+<div id="aufg-abschluss"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="einwand">&larr; Phase 6</button><button class="btn-nav primary" data-goto="zusatz">Phase 8: Zusatzverkauf &rarr;</button></div>
+</section><section class="tab-panel" id="tab-zusatz">
+<div class="ph-kopf" style="background:#546e7a;">
+<span class="ph-nr">8</span>
+<div><h2>Zusatzverkauf und Verabschiedung</h2><p>Passende Erg&#228;nzung anbieten und freundlich verabschieden.</p></div></div>
+
+<div class="card">
+<h2>Was du tun solltest</h2>
+<ul class="tun"><li>Erst nach der Kaufentscheidung anbieten</li><li>Nur sachlich passende Erg&auml;nzungen vorschlagen</li><li>Den Nutzen des Zusatzartikels kurz begr&uuml;nden</li><li>Freundlich verabschieden mit Dank und Blickkontakt</li></ul>
+</div>
+
+<div class="card">
+<h2>H&auml;ufige Fehler</h2>
+<ul class="fehler"><li>Zu fr&uuml;h anbieten und damit vom Hauptartikel ablenken</li><li>Unpassende Artikel aufdr&auml;ngen</li><li>Nach dem Bezahlen noch etwas anbieten &ndash; meist zu sp&auml;t</li><li>Sich wortlos abwenden</li></ul>
+</div>
+
+<div class="card">
+<h2>Formulierungen f&uuml;r die Praxis</h2>
+<div class="saetze"><div class="satz">Passende Wandersocken h&auml;tte ich auch noch da &ndash; die schonen die F&uuml;&szlig;e zus&auml;tzlich.</div><div class="satz">Zu den Schuhen empfehle ich ein Impr&auml;gnierspray, damit bleiben sie l&auml;nger wasserdicht.</div><div class="satz">Vielen Dank f&uuml;r Ihren Einkauf und viel Freude damit!</div></div>
+<div class="merke">Der Zusatzverkauf muss dem Kunden n&uuml;tzen, nicht nur dem Umsatz. Und: Die Verabschiedung ist der letzte Eindruck &ndash; der bleibt haften.</div>
+</div>
+
+<div class="card" style="border-color:#546e7a;">
+<h2>&Uuml;bungsaufgaben zu Phase 8</h2>
+<div id="aufg-zusatz"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="abschluss">&larr; Phase 7</button><button class="btn-nav primary" data-goto="uebung">Weiter: &Uuml;bung &rarr;</button></div>
+</section>
+<section class="tab-panel" id="tab-uebung">
+<div class="ph-kopf" style="background:#1a1a2e;"><span class="ph-nr">&#9998;</span>
+<div><h2>&Uuml;bungen zum Gesamtablauf</h2><p>Reihenfolge und Zuordnung &uuml;ben</p></div></div>
+
+<div class="card">
+<h2>&Uuml;bung 1: Bringe die Phasen in die richtige Reihenfolge</h2>
+<p style="font-size:.88rem;color:#555;margin-bottom:.6rem;">Trage bei jeder Phase die richtige Nummer von 1 bis 8 ein.</p>
+<div id="sort-box"></div>
+<div style="display:flex;gap:.6rem;margin-top:.8rem;flex-wrap:wrap;">
+<button class="check-btn" id="sort-btn">Pr&uuml;fen</button>
+<button class="check-btn grau" id="sort-reset">Zur&uuml;cksetzen</button>
+</div>
+<div class="sort-fb" id="sort-fb"></div>
+</div>
+
+<div class="card">
+<h2>&Uuml;bung 2: Welcher Satz geh&ouml;rt zu welcher Phase?</h2>
+<p style="font-size:.88rem;color:#555;margin-bottom:.6rem;">Ordne jeden Satz aus einem Verkaufsgespr&auml;ch der passenden Phase zu.</p>
+<div id="zu-container"></div>
+</div>
+<div class="tab-nav"><button class="btn-nav" data-goto="zusatz">&larr; Phase 8</button>
+<button class="btn-nav primary" data-goto="quiz">Weiter: Quiz &rarr;</button></div>
+</section>
+
+<section class="tab-panel" id="tab-quiz">
+<div class="ph-kopf" style="background:#2d6e7e;"><span class="ph-nr">?</span>
+<div><h2>Abschlussquiz</h2><p>12 Fragen zum gesamten Verkaufsgespr&auml;ch</p></div></div>
+<div class="card"><div id="quiz-container"></div></div>
+<div class="card" id="result-card" style="display:none;">
+<h2 style="text-align:center;">Dein Ergebnis</h2>
+<div class="result-card">
+<div class="result-score" id="res-score">&ndash;</div>
+<div class="result-note" id="res-note">&ndash;</div>
+<p class="result-txt" id="res-txt"></p>
+</div>
+</div>
+<div class="tab-nav"><button class="btn-nav" data-goto="uebung">&larr; &Uuml;bung</button><span></span></div>
+</section>
+
+</main>
+<script>
+(function(){
+"use strict";
+var AUFG={"kontakt": [{"q": "Wann ist der richtige Zeitpunkt fuer die Begruessung?", "opts": ["Sofort wenn der Kunde den Laden betritt, mit Blickkontakt und Gruss", "Erst wenn der Kunde von sich aus eine Frage stellt", "Nach etwa zehn Minuten, damit der Kunde in Ruhe schauen kann - das stimmt nicht", "Erst an der Kasse beim Bezahlvorgang"], "ok": 0, "ex": "Der erste Eindruck entsteht in wenigen Sekunden. Ein freundlicher Blickkontakt und ein Gruss signalisieren sofort: Ich habe dich gesehen und bin fuer dich da. Wer wartet, wirkt desinteressiert."}, {"q": "Ein Kunde betritt den Laden und schaut sich sichtlich orientierungslos um. Wie reagierst du?", "opts": ["Du wartest ab, bis er dich anspricht", "Du fragst sofort: Kann ich Ihnen helfen?", "Du gruesst freundlich und bietest nach kurzer Zeit deine Hilfe an", "Du raeumst weiter Ware ein und beobachtest ihn was so nicht richtig ist"], "ok": 2, "ex": "Erst gruessen, dann dem Kunden einen Moment zur Orientierung lassen, dann Hilfe anbieten. Die Frage 'Kann ich Ihnen helfen?' ist zwar hoeflich, laedt aber zum kurzen 'Nein danke' ein."}, {"q": "Welches Verhalten in der Kontaktphase ist ein Fehler?", "opts": ["Den Kunden mit Namen ansprechen, wenn du ihn kennst", "Die Taetigkeit unterbrechen und dich dem Kunden zuwenden", "Auf die Tageszeit passend gruessen", "Waehrend der Begruessung das Handy in der Hand behalten"], "ok": 3, "ex": "Das Handy in der Hand signalisiert: Etwas anderes ist mir wichtiger als du. Koerpersprache wirkt staerker als Worte. Handy weg, Blickkontakt, zugewandte Haltung."}, {"q": "Was gehoert zur Koerpersprache einer guten Begruessung?", "opts": ["Verschraenkte Arme, damit du souveraen wirkst", "Offene Haltung, Blickkontakt und ein Laecheln", "Blick auf den Boden, um nicht aufdringlich zu sein", "Haende in den Hosentaschen fuer eine lockere Wirkung"], "ok": 1, "ex": "Offene Koerperhaltung, Blickkontakt und ein echtes Laecheln schaffen Vertrauen. Verschraenkte Arme wirken abweisend, Haende in den Taschen wirken desinteressiert."}], "bedarf": [{"q": "Was ist das Ziel der Bedarfsermittlung?", "opts": ["Dem Kunden moeglichst schnell das teuerste Produkt zu zeigen", "Herauszufinden was der Kunde wirklich braucht und wuenscht", "Den Kunden von seinem urspruenglichen Wunsch abzubringen", "Die Lagerbestaende des Geschaefts zu ueberpruefen"], "ok": 1, "ex": "Nur wer den Bedarf kennt, kann passend beraten. Ohne Bedarfsermittlung zeigst du Ware auf gut Glueck - der Kunde fuehlt sich nicht verstanden und geht."}, {"q": "Welche Frage ist eine offene Frage?", "opts": ["Moechten Sie die Jacke in Blau oder in Schwarz? - das stimmt nicht", "Suchen Sie etwas Bestimmtes?", "Soll es eine wasserdichte Jacke sein?", "Wofuer moechten Sie die Jacke hauptsaechlich nutzen?"], "ok": 3, "ex": "Offene Fragen beginnen mit W-Woertern (wer, was, wie, wofuer, warum) und koennen nicht mit Ja oder Nein beantwortet werden. Sie bringen die meisten Informationen."}, {"q": "Wann setzt du geschlossene Fragen sinnvoll ein?", "opts": ["Um am Ende Einzelheiten zu klaeren und Entscheidungen abzusichern", "Gar nicht, sie sind im Verkauf immer falsch und fuehrt meist zum Abbruch", "Am Anfang, um moeglichst viel zu erfahren", "Nur bei Kunden die wenig sprechen wollen"], "ok": 0, "ex": "Die Reihenfolge zaehlt: Erst offene Fragen zum Erkunden, dann geschlossene Fragen zum Festlegen. 'Soll die Jacke eine Kapuze haben?' klaert am Ende ein konkretes Detail."}, {"q": "Was ist beim Zuhoeren besonders wichtig?", "opts": ["Waehrend der Kunde spricht schon die naechste Frage vorbereiten", "Moeglichst schnell eine Loesung vorschlagen", "Den Kunden ausreden lassen und wichtige Punkte zusammenfassen", "Den Kunden unterbrechen wenn du die Antwort schon kennst"], "ok": 2, "ex": "Aktives Zuhoeren heisst: ausreden lassen, nicken, nachfragen und am Ende zusammenfassen. Mit 'Habe ich Sie richtig verstanden, Sie suchen ...' zeigst du dem Kunden, dass du ihn ernst nimmst."}], "vorlage": [{"q": "Wie viele Artikel legst du dem Kunden idealerweise vor?", "opts": ["Nur einen, damit die Entscheidung leichtfaellt", "So viele wie moeglich, damit sicher etwas dabei ist", "Zwei bis drei passende Artikel zur Auswahl", "Mindestens acht, um die Sortimentsbreite zu zeigen"], "ok": 2, "ex": "Zwei bis drei Artikel geben echte Auswahl, ohne zu ueberfordern. Bei nur einem Artikel fehlt der Vergleich, bei zu vielen entsteht Entscheidungsstress - der Kunde kauft dann oft gar nichts."}, {"q": "Wie legst du die Ware richtig vor?", "opts": ["Sorgfaeltig auspacken und dem Kunden in die Hand geben", "Auf den Tresen werfen und den Kunden schauen lassen - das stimmt nicht", "In der Verpackung lassen, damit sie sauber bleibt", "Von weitem zeigen ohne sie zu beruehren"], "ok": 0, "ex": "Der Kunde soll die Ware anfassen, fuehlen und ausprobieren koennen. Wer die Ware in der Hand haelt, entwickelt ein Besitzgefuehl - das erhoeht die Kaufbereitschaft deutlich."}, {"q": "In welcher Reihenfolge legst du unterschiedlich teure Artikel vor?", "opts": ["Immer zuerst den guenstigsten Artikel - davon ist im Verkauf klar abzuraten", "Zuerst den Artikel, der dem ermittelten Bedarf am besten entspricht", "Immer zuerst den teuersten Artikel", "Die Reihenfolge ist voellig egal"], "ok": 1, "ex": "Massgeblich ist der Bedarf, nicht der Preis. Wer mit dem billigsten Artikel beginnt, wertet das Sortiment ab. Wer mit dem teuersten beginnt, wirkt aufdringlich."}, {"q": "Was tust du, wenn der gewuenschte Artikel nicht vorraetig ist?", "opts": ["Dem Kunden sagen, dass er es woanders versuchen soll - das stimmt nicht", "Nur sagen, dass der Artikel nicht da ist", "Einen deutlich teureren Artikel als Ersatz vorlegen", "Eine gleichwertige Alternative anbieten oder Bestellung vorschlagen"], "ok": 3, "ex": "Nie mit einem blossen Nein enden. Biete eine Alternative im gleichen Preis- und Qualitaetsbereich an oder schlage eine Bestellung vor. So bleibt der Kunde im Geschaeft."}], "argument": [{"q": "Was ist der Unterschied zwischen einem Merkmal und einem Nutzen?", "opts": ["Es gibt keinen Unterschied, beides bedeutet dasselbe", "Das Merkmal betrifft die Optik, der Nutzen nur die Haltbarkeit - das stimmt nicht", "Der Nutzen ist die technische Angabe, das Merkmal der Preis", "Das Merkmal ist eine Eigenschaft, der Nutzen ist der Vorteil fuer den Kunden"], "ok": 3, "ex": "Merkmal: 'Die Jacke hat eine Membran.' Nutzen: 'Dadurch bleiben Sie auch bei starkem Regen trocken.' Kunden kaufen keine Merkmale - sie kaufen den Nutzen daraus."}, {"q": "Ein Kunde sucht eine Jacke fuers Fahrradfahren. Welche Argumentation ist am besten?", "opts": ["Die Jacke ist aus Polyester mit einer 20.000er Wassersaeule - das stimmt nicht", "Die Jacke ist wasserdicht, so bleiben Sie auf dem Rad trocken", "Diese Jacke ist unser meistverkauftes Modell", "Die Jacke gibt es in fuenf verschiedenen Farben"], "ok": 1, "ex": "Nur diese Antwort verbindet ein Merkmal (wasserdicht) mit dem konkreten Nutzen fuer den ermittelten Bedarf (trocken bleiben beim Radfahren). Technische Daten allein sagen dem Kunden wenig."}, {"q": "Wie viele Argumente nennst du am besten?", "opts": ["Alle die dir einfallen, damit nichts fehlt - das stimmt nicht", "Genau eines, mehr verwirrt den Kunden", "Zwei bis drei starke Argumente, die zum Bedarf passen", "Mindestens zehn, um fachkundig zu wirken"], "ok": 2, "ex": "Wenige starke Argumente wirken besser als viele schwache. Waehle die aus, die zum ermittelten Bedarf passen - alles andere ist fuer diesen Kunden unwichtig."}, {"q": "Warum solltest du den Kunden die Ware selbst ausprobieren lassen?", "opts": ["Weil eigenes Erleben ueberzeugender ist als jede Beschreibung", "Damit du in der Zeit andere Kunden bedienen kannst - das stimmt nicht", "Weil es Vorschrift im Einzelhandel ist", "Damit der Kunde die Ware auf Maengel pruefen kann"], "ok": 0, "ex": "Wer die Ware selbst anprobiert oder ausprobiert, erlebt den Nutzen unmittelbar. Das ueberzeugt staerker als jede Beschreibung und schafft ein Besitzgefuehl."}], "preis": [{"q": "Wann nennst du den Preis am besten?", "opts": ["Erst wenn der Kunde den Nutzen der Ware kennt", "Sofort zu Beginn des Gespraechs", "Moeglichst gar nicht, bis der Kunde danach fragt", "Direkt nach der Begruessung"], "ok": 0, "ex": "Der Preis wirkt immer im Verhaeltnis zum erkannten Nutzen. Wer zuerst den Wert aufbaut, macht den Preis nachvollziehbar. Wer zu frueh den Preis nennt, hat nur eine Zahl ohne Gegenwert."}, {"q": "Was versteht man unter der Sandwich-Methode bei der Preisnennung?", "opts": ["Den Preis erst nach dem Kaufabschluss nennen", "Den Preis in zwei Teilbetraege aufteilen", "Zwei Produkte gemeinsam zu einem Preis anbieten - das stimmt nicht", "Den Preis zwischen zwei Nutzenargumente einbetten"], "ok": 3, "ex": "Beispiel: 'Die Jacke ist komplett wasserdicht, kostet 129 Euro und Sie haben fuenf Jahre Garantie darauf.' Der Preis steht in der Mitte - Nutzen davor, Nutzen danach. So bleibt er nicht als Letztes im Ohr."}, {"q": "Wie nennst du den Preis am besten?", "opts": ["Leise und schnell, damit er weniger auffaellt", "Klar, deutlich und ohne Zoegern", "Mit einer Entschuldigung, weil er hoch ist", "Nur ungefaehr, um Verhandlungsspielraum zu lassen"], "ok": 1, "ex": "Wer den Preis leise oder entschuldigend nennt, signalisiert selbst Zweifel am Wert. Nenne ihn klar und selbstbewusst - dann wirkt er angemessen."}, {"q": "Welche Formulierung ist bei der Preisnennung guenstiger?", "opts": ["Das kostet leider 129 Euro", "Das ist mit 129 Euro nicht ganz billig", "Der Preis betraegt 129 Euro", "Da muessen Sie 129 Euro bezahlen"], "ok": 2, "ex": "Woerter wie 'leider', 'nicht ganz billig' oder 'muessen bezahlen' werten das Angebot ab. Eine sachliche und neutrale Formulierung ist am besten."}], "einwand": [{"q": "Wie reagierst du grundsaetzlich auf einen Kundeneinwand?", "opts": ["Widersprechen und erklaeren dass der Kunde falsch liegt - das stimmt nicht", "Den Einwand ueberhoeren und weiter argumentieren", "Zuhoeren, Verstaendnis zeigen und dann sachlich antworten", "Sofort einen Preisnachlass anbieten"], "ok": 2, "ex": "Ein Einwand ist kein Angriff, sondern ein Zeichen von Interesse. Zuhoeren, Verstaendnis zeigen ('Das kann ich gut verstehen'), dann sachlich mit einem Nutzenargument antworten."}, {"q": "Was unterscheidet einen Einwand von einem Vorwand?", "opts": ["Ein Einwand ist ein echter Grund, ein Vorwand nur eine Ausrede", "Ein Vorwand ist immer sachlich richtig", "Ein Einwand wird nur von Stammkunden geaeussert - das stimmt nicht", "Es gibt keinen Unterschied zwischen beiden"], "ok": 0, "ex": "Beim Einwand nennt der Kunde einen echten Grund, den du ausraeumen kannst. Beim Vorwand will er das Gespraech nur beenden - hier hilft eine ehrliche Nachfrage: 'Gibt es noch etwas, das Sie zoegern laesst?'"}, {"q": "Ein Kunde sagt: 'Das ist mir zu teuer.' Was ist die beste Reaktion?", "opts": ["Dann kann ich Ihnen leider nicht helfen", "Wir sind eben kein Discounter", "Gut, ich gebe Ihnen zehn Prozent Rabatt - das stimmt nicht", "Ich verstehe. Womit vergleichen Sie den Preis?"], "ok": 3, "ex": "Erst nachfragen, dann argumentieren. 'Zu teuer' kann vieles heissen - zu teuer im Vergleich wozu? Oft fehlt nur das Verstaendnis fuer den Nutzen. Ein sofortiger Rabatt entwertet die Ware."}, {"q": "Was ist die Ja-aber-Methode?", "opts": ["Dem Kunden in allen Punkten zustimmen", "Dem Kunden zustimmen und dann ein Gegenargument nennen", "Dem Kunden sofort widersprechen", "Den Einwand mit einer Gegenfrage abwehren - das stimmt nicht"], "ok": 1, "ex": "Beispiel: 'Ja, die Jacke ist teurer als andere - dafuer halten Sie mit der Membran auch bei Dauerregen trocken.' Wichtig: statt 'aber' besser 'und' oder 'dafuer' sagen, das klingt weniger nach Widerspruch."}], "abschluss": [{"q": "Woran erkennst du, dass der Kunde kaufbereit ist?", "opts": ["Er schaut demonstrativ auf die Uhr", "Er fragt nach Lieferzeit, Garantie oder Zahlungsmoeglichkeiten", "Er tritt einen Schritt zurueck und verschraenkt die Arme - das stimmt nicht", "Er wechselt das Thema und spricht ueber das Wetter"], "ok": 1, "ex": "Kaufsignale sind Fragen zu Einzelheiten nach dem Kauf: Lieferung, Garantie, Zahlung, Pflege. Auch nonverbal: Der Kunde behaelt die Ware in der Hand oder nickt zustimmend."}, {"q": "Welche Abschlussfrage ist am guenstigsten?", "opts": ["Moechten Sie das Produkt kaufen?", "Wollen Sie sich das noch ueberlegen? und fuehrt meist zum Abbruch", "Soll ich es Ihnen einpacken oder nehmen Sie es gleich mit?", "Haben Sie sonst noch Fragen?"], "ok": 2, "ex": "Das ist eine Alternativfrage - beide Antworten fuehren zum Kauf. Die erste Frage laedt zum Nein ein, die dritte schickt den Kunden aktiv aus dem Laden."}, {"q": "Was ist ein Fehler beim Kaufabschluss?", "opts": ["Nach der Entscheidung weiter zu argumentieren", "Nach den Kaufsignalen den Abschluss anzubieten", "Dem Kunden die Entscheidung zu bestaetigen", "Eine Alternativfrage zu stellen"], "ok": 0, "ex": "Wenn der Kunde entschieden hat, hoerst du mit dem Argumentieren auf. Weiterreden weckt neue Zweifel - der Kunde ueberlegt es sich womoeglich noch einmal anders."}, {"q": "Der Kunde zoegert noch. Was hilft am besten?", "opts": ["Ihn allein lassen, damit er in Ruhe nachdenkt", "Ihn mit einem Sonderrabatt zur Entscheidung draengen", "Ihm sagen dass er sich schnell entscheiden muss", "Die wichtigsten Nutzenargumente kurz zusammenfassen"], "ok": 3, "ex": "Eine kurze Zusammenfassung der Vorteile, die zu seinem Bedarf passen, gibt Sicherheit. Druck und Rabatte wirken dagegen unseri\u00f6s und erzeugen Misstrauen."}], "zusatz": [{"q": "Was ist ein Zusatzverkauf?", "opts": ["Der Verkauf eines teureren Artikels statt des gewuenschten", "Ein zusaetzlicher Rabatt auf den Hauptartikel", "Der Verkauf an einen zweiten Kunden", "Das Angebot passender Ergaenzungsartikel zum Hauptartikel"], "ok": 3, "ex": "Zusatzverkauf heisst: passende Ergaenzung anbieten. Zu den Laufschuhen die Sportsocken, zur Jacke das Impraegnierspray. Der Verkauf eines teureren Artikels statt des gewuenschten waere Up-Selling."}, {"q": "Wann bietest du den Zusatzartikel an?", "opts": ["Vor der Bedarfsermittlung", "Nach der Kaufentscheidung fuer den Hauptartikel", "Direkt nach der Begruessung", "Erst nach dem Bezahlen an der Kasse - das stimmt nicht"], "ok": 1, "ex": "Erst wenn der Hauptartikel entschieden ist. Vorher lenkst du vom Hauptartikel ab und gefaehrdest den Abschluss. Nach dem Bezahlen ist es meist zu spaet."}, {"q": "Ein Kunde kauft Wanderschuhe. Welcher Zusatzartikel passt?", "opts": ["Eine Kaffeemaschine im Angebot", "Ein Fahrradschloss", "Wandersocken und Impraegnierspray", "Ein Gutschein fuer die Modeabteilung"], "ok": 2, "ex": "Der Zusatzartikel muss sachlich zum Hauptartikel passen und einen erkennbaren Nutzen haben. Socken und Impraegnierspray gehoeren unmittelbar zum Wanderschuh."}, {"q": "Was gehoert zu einer guten Verabschiedung?", "opts": ["Freundlicher Dank, Blickkontakt und ein guter Wunsch", "Nur die Ware ueberreichen und sich abwenden", "Ein knappes Tschuess ohne aufzuschauen", "Den naechsten Kunden schon waehrenddessen ansprechen"], "ok": 0, "ex": "Die Verabschiedung ist der letzte Eindruck - und der bleibt haften. Dank, Blickkontakt und ein guter Wunsch ('Viel Freude damit') sorgen dafuer, dass der Kunde wiederkommt."}]};var QUIZ=[{"id": "q1", "frage": "Wie lautet die richtige Reihenfolge der ersten drei Phasen?", "opts": ["Kontakt, Bedarfsermittlung, Warenvorlage", "Bedarfsermittlung, Kontakt, Warenvorlage", "Warenvorlage, Kontakt, Bedarfsermittlung", "Kontakt, Warenvorlage, Bedarfsermittlung"], "correct": 0, "loes": "Erst der Kontakt (Begruessung), dann die Bedarfsermittlung, dann die Warenvorlage. Ohne bekannten Bedarf kannst du keine passende Ware vorlegen."}, {"id": "q2", "frage": "Welche Frage ist eine offene Frage?", "opts": ["Nehmen Sie die Jacke in Groesse M? - das stimmt nicht", "Soll es Blau oder Schwarz sein?", "Wofuer moechten Sie die Jacke nutzen?", "Ist Ihnen die Kapuze wichtig?"], "correct": 2, "loes": "Offene Fragen beginnen mit einem W-Wort und lassen sich nicht mit Ja oder Nein beantworten. Sie liefern die meisten Informationen fuer die Bedarfsermittlung."}, {"id": "q3", "frage": "Ein Merkmal ist eine Eigenschaft der Ware. Was ist der Nutzen?", "opts": ["Der Preis den der Kunde zahlt", "Der konkrete Vorteil den der Kunde davon hat", "Die technische Bezeichnung des Merkmals - das stimmt nicht", "Die Garantiedauer des Herstellers"], "correct": 1, "loes": "Merkmal: wasserdichte Membran. Nutzen: Sie bleiben im Regen trocken. Kunden kaufen den Nutzen, nicht das Merkmal."}, {"id": "q4", "frage": "Was beschreibt die Sandwich-Methode?", "opts": ["Zwei Artikel gemeinsam anbieten", "Den Preis in Raten aufteilen", "Zwei Kunden gleichzeitig bedienen - das stimmt nicht", "Den Preis zwischen zwei Nutzenargumente stellen"], "correct": 3, "loes": "Nutzen - Preis - Nutzen. So bleibt nicht der Preis als Letztes im Ohr, sondern der Vorteil fuer den Kunden."}, {"id": "q5", "frage": "Wie viele Artikel legst du dem Kunden am besten vor?", "opts": ["Zwei bis drei", "Genau einen", "Mindestens fuenf", "So viele wie moeglich"], "correct": 0, "loes": "Zwei bis drei Artikel bieten echte Auswahl ohne zu ueberfordern. Zu viele Artikel fuehren zu Entscheidungsstress - der Kunde kauft dann oft gar nichts."}, {"id": "q6", "frage": "Ein Kunde sagt: 'Das muss ich mir noch ueberlegen.' Was ist das vermutlich?", "opts": ["Ein Kaufsignal", "Eine Zusatzfrage", "Ein Einwand oder Vorwand", "Eine Abschlussfrage - das stimmt nicht"], "correct": 2, "loes": "Es ist ein Einwand oder Vorwand. Frage freundlich nach, was ihn noch zoegern laesst - oft steckt ein konkreter Grund dahinter, den du ausraeumen kannst."}, {"id": "q7", "frage": "Woran erkennst du ein Kaufsignal?", "opts": ["Der Kunde schaut auf die Uhr", "Der Kunde fragt nach Garantie und Lieferzeit", "Der Kunde tritt einen Schritt zurueck - das stimmt nicht", "Der Kunde wechselt das Thema"], "correct": 1, "loes": "Fragen zu Garantie, Lieferzeit oder Zahlung zeigen: Der Kunde denkt bereits ueber die Zeit nach dem Kauf nach. Das ist ein klares Kaufsignal."}, {"id": "q8", "frage": "Welche Abschlussfrage ist eine Alternativfrage?", "opts": ["Moechten Sie kaufen?", "Wollen Sie noch ueberlegen? was so nicht richtig ist", "Haben Sie noch Fragen?", "Soll ich einpacken oder nehmen Sie es so mit?"], "correct": 3, "loes": "Bei der Alternativfrage fuehren beide Antworten zum Kauf. Die anderen Formulierungen laden zum Nein ein oder verzoegern die Entscheidung."}, {"id": "q9", "frage": "Wann bietest du einen Zusatzartikel an?", "opts": ["Nach der Kaufentscheidung fuer den Hauptartikel", "Vor der Bedarfsermittlung und fuehrt meist zum Abbruch", "Waehrend der Begruessung", "Erst nach dem Bezahlen"], "correct": 0, "loes": "Erst wenn der Hauptartikel entschieden ist. Vorher lenkst du ab und gefaehrdest den Abschluss - nachher ist es meist zu spaet."}, {"id": "q10", "frage": "Welches Verhalten ist in der Kontaktphase falsch?", "opts": ["Blickkontakt aufnehmen", "Der Tageszeit entsprechend gruessen", "Weiterarbeiten und den Kunden ignorieren", "Eine offene Koerperhaltung einnehmen - das stimmt nicht"], "correct": 2, "loes": "Wer weiterarbeitet, signalisiert Desinteresse. Die Taetigkeit unterbrechen und sich dem Kunden zuwenden - der erste Eindruck entscheidet."}, {"id": "q11", "frage": "Was ist der Unterschied zwischen Einwand und Vorwand?", "opts": ["Der Einwand kommt nur von Stammkunden was so nicht richtig ist", "Der Vorwand ist immer berechtigt", "Beide bedeuten dasselbe", "Der Einwand ist ein echter Grund, der Vorwand eine Ausrede"], "correct": 3, "loes": "Den Einwand kannst du mit Argumenten ausraeumen. Beim Vorwand will der Kunde das Gespraech beenden - hier hilft nur eine ehrliche Nachfrage."}, {"id": "q12", "frage": "Warum ist die Verabschiedung wichtig?", "opts": ["Weil sie gesetzlich vorgeschrieben ist - davon ist im Verkauf klar abzuraten", "Weil der letzte Eindruck darueber entscheidet ob der Kunde wiederkommt", "Weil sie den Umsatz direkt erhoeht", "Weil sie den Zusatzverkauf ersetzt"], "correct": 1, "loes": "Der letzte Eindruck bleibt haften. Eine freundliche Verabschiedung mit Dank und Blickkontakt ist die Grundlage dafuer, dass der Kunde wiederkommt."}];var ZU_DATA=[{"nr": 1, "text": "Guten Tag! Sch\u00f6n, dass Sie da sind.", "loesung": "1 - Kontaktaufnahme", "ex": "Die Begruessung eroeffnet das Gespraech und schafft den ersten Eindruck."}, {"nr": 2, "text": "Wof\u00fcr m\u00f6chten Sie die Schuhe haupts\u00e4chlich nutzen?", "loesung": "2 - Bedarfsermittlung", "ex": "Eine offene Frage, um den tatsaechlichen Bedarf herauszufinden."}, {"nr": 3, "text": "Ich habe Ihnen hier zwei Modelle herausgesucht, die gut passen k\u00f6nnten.", "loesung": "3 - Warenvorlage", "ex": "Zwei bis drei passende Artikel werden zur Auswahl vorgelegt."}, {"nr": 4, "text": "Die Sohle ist rutschfest - so haben Sie auch auf nassem Untergrund sicheren Halt.", "loesung": "4 - Verkaufsargumentation", "ex": "Merkmal (rutschfeste Sohle) wird mit dem Nutzen (sicherer Halt) verbunden."}, {"nr": 5, "text": "Der Schuh ist komplett wasserdicht, kostet 89 Euro und Sie haben zwei Jahre Garantie.", "loesung": "5 - Preisnennung", "ex": "Sandwich-Methode: Der Preis steht zwischen zwei Nutzenargumenten."}, {"nr": 6, "text": "Das kann ich gut verstehen. Womit vergleichen Sie den Preis denn?", "loesung": "6 - Einwandbehandlung", "ex": "Verstaendnis zeigen und nachfragen, statt sofort zu widersprechen."}, {"nr": 7, "text": "Soll ich Ihnen die Schuhe einpacken oder m\u00f6chten Sie sie gleich anbehalten?", "loesung": "7 - Kaufabschluss", "ex": "Alternativfrage - beide Antworten fuehren zum Kauf."}, {"nr": 8, "text": "Passende Wandersocken h\u00e4tte ich auch noch da, die schonen die F\u00fc\u00dfe zus\u00e4tzlich.", "loesung": "8 - Zusatzverkauf", "ex": "Ergaenzungsartikel nach der Kaufentscheidung fuer den Hauptartikel."}, {"nr": 9, "text": "Vielen Dank f\u00fcr Ihren Einkauf und viel Freude mit den Schuhen!", "loesung": "8 - Zusatzverkauf", "ex": "Die Verabschiedung gehoert zur letzten Phase und hinterlaesst den letzten Eindruck."}, {"nr": 10, "text": "Ist Ihnen eine Kapuze wichtig?", "loesung": "2 - Bedarfsermittlung", "ex": "Geschlossene Frage zur Klaerung eines Details - ebenfalls Bedarfsermittlung."}, {"nr": 11, "text": "Probieren Sie die Jacke ruhig einmal an.", "loesung": "4 - Verkaufsargumentation", "ex": "Der Kunde soll die Ware selbst erleben - das ueberzeugt staerker als Worte."}, {"nr": 12, "text": "Ja, das Modell ist etwas teurer - daf\u00fcr h\u00e4lt es deutlich l\u00e4nger.", "loesung": "6 - Einwandbehandlung", "ex": "Ja-aber-Methode: zustimmen und dann ein Nutzenargument nennen."}];var ZU_OPTS=["1 - Kontaktaufnahme", "2 - Bedarfsermittlung", "3 - Warenvorlage", "4 - Verkaufsargumentation", "5 - Preisnennung", "6 - Einwandbehandlung", "7 - Kaufabschluss", "8 - Zusatzverkauf"];
+var PH=[{"id": "kontakt", "nr": 1, "kurz": "Kontakt", "titel": "Kontaktaufnahme", "farbe": "#1565c0", "ziel": "Einen freundlichen ersten Eindruck schaffen und dem Kunden zeigen: Ich habe dich gesehen.", "bsp": "Guten Tag! Sch\u00f6n, dass Sie da sind."}, {"id": "bedarf", "nr": 2, "kurz": "Bedarf", "titel": "Bedarfsermittlung", "farbe": "#00838f", "ziel": "Herausfinden, was der Kunde wirklich braucht - durch Fragen und Zuh\u00f6ren.", "bsp": "Wof\u00fcr m\u00f6chten Sie die Schuhe haupts\u00e4chlich nutzen?"}, {"id": "vorlage", "nr": 3, "kurz": "Warenvorlage", "titel": "Warenvorlage", "farbe": "#2e7d32", "ziel": "Zwei bis drei passende Artikel zeigen und den Kunden anfassen lassen.", "bsp": "Ich habe Ihnen zwei Modelle herausgesucht, die gut passen k\u00f6nnten."}, {"id": "argument", "nr": 4, "kurz": "Argumentation", "titel": "Verkaufsargumentation", "farbe": "#7b1fa2", "ziel": "Merkmale der Ware in einen Nutzen f\u00fcr den Kunden \u00fcbersetzen.", "bsp": "Die Sohle ist rutschfest - so haben Sie auch bei N\u00e4sse sicheren Halt."}, {"id": "preis", "nr": 5, "kurz": "Preis", "titel": "Preisnennung", "farbe": "#b8860b", "ziel": "Den Preis klar nennen, eingebettet zwischen zwei Nutzenargumenten.", "bsp": "Der Schuh ist wasserdicht, kostet 89 Euro und hat zwei Jahre Garantie."}, {"id": "einwand", "nr": 6, "kurz": "Einw\u00e4nde", "titel": "Einwandbehandlung", "farbe": "#e65100", "ziel": "Bedenken des Kunden ernst nehmen und sachlich ausr\u00e4umen.", "bsp": "Das kann ich gut verstehen. Womit vergleichen Sie den Preis?"}, {"id": "abschluss", "nr": 7, "kurz": "Abschluss", "titel": "Kaufabschluss", "farbe": "#c84b31", "ziel": "Kaufsignale erkennen und die Entscheidung herbeif\u00fchren.", "bsp": "Soll ich sie einpacken oder m\u00f6chten Sie sie gleich anbehalten?"}, {"id": "zusatz", "nr": 8, "kurz": "Zusatzverkauf", "titel": "Zusatzverkauf und Verabschiedung", "farbe": "#546e7a", "ziel": "Passende Erg\u00e4nzung anbieten und freundlich verabschieden.", "bsp": "Passende Socken h\u00e4tte ich auch da. - Viel Freude damit!"}];
+var TOTAL=QUIZ.length;var gAns=0;
+
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('nav.tabs button').forEach(function(b){b.classList.remove('active');});
+  var p=document.getElementById('tab-'+id);if(p)p.classList.add('active');
+  var b=document.querySelector('[data-tab="'+id+'"]');if(b)b.classList.add('active');
+  setTimeout(function(){window.scrollTo({top:0,behavior:'instant'});},0);
+  buildAufgaben(id);
+  if(id==='uebung')buildZuordnung();
+}
+function addScore(){
+  gAns=Math.min(gAns+1,TOTAL);
+  var f=document.getElementById('pb-fill'),l=document.getElementById('pb-pct');
+  if(f)f.style.width=Math.round(gAns/TOTAL*100)+'%';
+  if(l)l.textContent=gAns+' / '+TOTAL;
+}
+document.querySelectorAll('nav.tabs button').forEach(function(b){
+  b.addEventListener('click',function(){showTab(this.getAttribute('data-tab'));});});
+document.querySelectorAll('[data-goto]').forEach(function(b){
+  b.addEventListener('click',function(){showTab(this.getAttribute('data-goto'));});});
+
+/* Treppendiagramm im Ueberblick */
+function initTreppe(){
+  var svg=document.getElementById('tr-svg');if(!svg)return;
+  svg.querySelectorAll('.tr-stufe').forEach(function(el){
+    el.addEventListener('click',function(e){
+      var id=el.getAttribute('data-ph');if(!id)return;
+      var ph=null;
+      for(var i=0;i<PH.length;i++){if(PH[i].id===id){ph=PH[i];break;}}
+      if(!ph)return;
+      var box=document.getElementById('tr-info');
+      var t=document.getElementById('tr-titel');
+      var z=document.getElementById('tr-ziel');
+      var b=document.getElementById('tr-bsp');
+      var g=document.getElementById('tr-go');
+      if(t){t.textContent='Phase '+ph.nr+': '+ph.titel;t.style.color=ph.farbe;}
+      if(z)z.textContent=ph.ziel;
+      if(b)b.textContent='\u201e'+ph.bsp+'\u201c';
+      if(g){g.setAttribute('data-goto',ph.id);g.textContent='Zu Phase '+ph.nr+' \u2192';}
+      if(box){box.style.display='block';box.style.borderColor=ph.farbe;}
+      svg.querySelectorAll('.tr-stufe').forEach(function(n){n.classList.remove('aktiv');});
+      el.classList.add('aktiv');
+      e.stopPropagation();
+    });
+  });
+  var g=document.getElementById('tr-go');
+  if(g)g.addEventListener('click',function(){showTab(g.getAttribute('data-goto'));});
+}
+
+function buildAufgaben(tabId){
+  var c=document.getElementById('aufg-'+tabId);
+  if(!c||c.children.length>0)return;
+  var qs=AUFG[tabId];if(!qs)return;
+  qs.forEach(function(q,qi){
+    var bl=document.createElement('div');bl.className='aufg-block';
+    var nr=document.createElement('div');nr.className='aufg-nr';
+    nr.textContent='Aufgabe '+(qi+1)+' von '+qs.length;
+    var fr=document.createElement('div');fr.className='aufg-frage';fr.textContent=q.q;
+    var op=document.createElement('div');op.className='aufg-opts';
+    var fb=document.createElement('div');fb.className='aufg-fb';
+    q.opts.forEach(function(o,oi){
+      var b=document.createElement('button');b.className='aufg-btn';b.textContent=o;
+      b.addEventListener('click',function(){
+        op.querySelectorAll('.aufg-btn').forEach(function(x){x.disabled=true;});
+        var ok=(oi===q.ok);
+        b.classList.add(ok?'correct':'wrong');
+        if(!ok)op.querySelectorAll('.aufg-btn')[q.ok].classList.add('correct');
+        fb.textContent=(ok?'\u2713 Richtig! ':'\u2717 Nicht ganz. ')+q.ex;
+        fb.className='aufg-fb show '+(ok?'correct':'wrong');
+      });
+      op.appendChild(b);
+    });
+    bl.appendChild(nr);bl.appendChild(fr);bl.appendChild(op);bl.appendChild(fb);
+    c.appendChild(bl);
+  });
+}
+
+function buildZuordnung(){
+  var c=document.getElementById('zu-container');
+  if(!c||c.children.length>0)return;
+  ZU_DATA.forEach(function(it){
+    var bl=document.createElement('div');bl.className='zu-block';
+    var nr=document.createElement('div');nr.className='zu-nr';
+    nr.textContent='Satz '+it.nr+' von '+ZU_DATA.length;
+    var tx=document.createElement('div');tx.className='zu-text';tx.textContent='\u201e'+it.text+'\u201c';
+    var se=document.createElement('select');se.className='zu-sel';
+    var o0=document.createElement('option');o0.value='';o0.textContent='-- Phase w\u00e4hlen --';
+    se.appendChild(o0);
+    ZU_OPTS.forEach(function(o){
+      var op=document.createElement('option');op.value=o;op.textContent=o;se.appendChild(op);});
+    var fb=document.createElement('div');fb.className='zu-fb';
+    se.addEventListener('change',function(){
+      if(!se.value)return;
+      var ok=(se.value===it.loesung);
+      se.className='zu-sel '+(ok?'ok':'nok');
+      fb.textContent=ok?('\u2713 Richtig! '+it.ex):('\u2717 Richtig w\u00e4re: '+it.loesung+'. '+it.ex);
+      fb.className='zu-fb show '+(ok?'ok':'nok');
+    });
+    bl.appendChild(nr);bl.appendChild(tx);bl.appendChild(se);bl.appendChild(fb);
+    c.appendChild(bl);
+  });
+}
+
+/* Reihenfolge-Uebung */
+function initSort(){
+  var c=document.getElementById('sort-box');if(!c)return;
+  var richtig=PH.map(function(p){return p.id;});
+  var misch=['preis','kontakt','zusatz','argument','abschluss','bedarf','einwand','vorlage'];
+  misch.forEach(function(id,i){
+    var ph=null;for(var k=0;k<PH.length;k++){if(PH[k].id===id)ph=PH[k];}
+    var row=document.createElement('div');row.className='sort-row';
+    var sel=document.createElement('select');sel.className='sort-sel';
+    var o0=document.createElement('option');o0.value='';o0.textContent='--';sel.appendChild(o0);
+    for(var n=1;n<=8;n++){
+      var o=document.createElement('option');o.value=n;o.textContent=n;sel.appendChild(o);}
+    var lbl=document.createElement('span');lbl.className='sort-lbl';lbl.textContent=ph.titel;
+    lbl.style.borderLeftColor=ph.farbe;
+    sel.setAttribute('data-soll',ph.nr);
+    row.appendChild(sel);row.appendChild(lbl);
+    c.appendChild(row);
+  });
+  var bt=document.getElementById('sort-btn');
+  var fb=document.getElementById('sort-fb');
+  if(bt)bt.addEventListener('click',function(){
+    var ok=0,ges=0;
+    c.querySelectorAll('.sort-sel').forEach(function(s){
+      ges++;
+      var r=(s.value===s.getAttribute('data-soll'));
+      s.className='sort-sel '+(r?'ok':'nok');
+      if(r)ok++;
+    });
+    fb.className='sort-fb show '+(ok===ges?'ok':'nok');
+    fb.textContent=ok===ges
+      ? '\u2713 Alle acht Phasen in der richtigen Reihenfolge!'
+      : '\u2717 '+ok+' von '+ges+' richtig. Denk daran: erst Kontakt, dann Bedarf, dann Ware - der Preis kommt erst nach den Argumenten.';
+  });
+  var rs=document.getElementById('sort-reset');
+  if(rs)rs.addEventListener('click',function(){
+    c.querySelectorAll('.sort-sel').forEach(function(s){s.value='';s.className='sort-sel';});
+    fb.className='sort-fb';fb.textContent='';
+  });
+}
+
+var qA=0,qC=0;
+function buildQuiz(){
+  var c=document.getElementById('quiz-container');if(!c)return;
+  QUIZ.forEach(function(q,idx){
+    var bl=document.createElement('div');bl.className='quiz-block';
+    var nr=document.createElement('div');nr.className='quiz-nr';
+    nr.textContent='Frage '+(idx+1)+' von '+QUIZ.length;
+    var fr=document.createElement('div');fr.className='quiz-frage';fr.textContent=q.frage;
+    var od=document.createElement('div');od.className='mc-opts';
+    var fb=document.createElement('div');fb.className='fb-box';
+    bl.appendChild(nr);bl.appendChild(fr);bl.appendChild(od);bl.appendChild(fb);
+    c.appendChild(bl);
+    q.opts.forEach(function(o,oi){
+      var b=document.createElement('button');b.className='mc-btn';b.textContent=o;
+      b.addEventListener('click',function(){
+        bl.querySelectorAll('.mc-btn').forEach(function(x){x.disabled=true;});
+        var ok=(oi===q.correct);
+        b.classList.add(ok?'correct':'wrong');
+        if(!ok)od.querySelectorAll('.mc-btn')[q.correct].classList.add('correct');
+        fb.textContent=ok?q.loes:('Nicht ganz. '+q.loes);
+        fb.className='fb-box show '+(ok?'correct':'wrong');
+        qA++;if(ok)qC++;addScore();
+        if(qA===QUIZ.length)setTimeout(showResult,700);
+      });
+      od.appendChild(b);
+    });
+  });
+}
+function showResult(){
+  var card=document.getElementById('result-card');if(card)card.style.display='block';
+  var pct=Math.round(qC/QUIZ.length*100);
+  var note,txt;
+  if(pct>=92){note='1';txt='Sehr gut! Du beherrschst das Phasenmodell sicher.';}
+  else if(pct>=81){note='2';txt='Gut! Nur noch kleine L\u00fccken.';}
+  else if(pct>=67){note='3';txt='Befriedigend. Schau dir die Phasen noch einmal an, bei denen du Fehler hattest.';}
+  else if(pct>=50){note='4';txt='Ausreichend. Arbeite die Tabs zu den einzelnen Phasen noch einmal durch.';}
+  else if(pct>=30){note='5';txt='Noch nicht ausreichend. Gehe die acht Phasen in Ruhe noch einmal durch.';}
+  else {note='6';txt='Starte am besten noch einmal beim \u00dcberblick.';}
+  var s=document.getElementById('res-score');
+  if(s)s.textContent=qC+' von '+QUIZ.length+' richtig ('+pct+' %)';
+  var n=document.getElementById('res-note');if(n)n.textContent='Note '+note;
+  var t=document.getElementById('res-txt');if(t)t.textContent=txt;
+  var qt=document.querySelector('[data-tab="quiz"]');if(qt)qt.classList.add('done');
+  var nv=document.querySelector('nav.tabs');var nh=nv?nv.offsetHeight:40;
+  var r=card.getBoundingClientRect();
+  window.scrollTo({top:window.pageYOffset+r.top-nh-8,behavior:'smooth'});
+}
+document.addEventListener('DOMContentLoaded',function(){
+  buildQuiz();initTreppe();initSort();
+});
+})();
+</script>
+</body>
+</html>
