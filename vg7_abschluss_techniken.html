@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kaufabschluss &ndash; Techniken</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#1a1a2e;--bg:#f5f0e8;--light:#faf7f2;--ph:#c84b31;--phl:#f9edea;
+--teal:#2d6e7e;--teal-l:#e4f0f3;--gold:#b8860b;--gold-l:#fdf6dc;--red:#c84b31;--red-l:#fdecea;
+--green:#2e7d32;--green-l:#e8f5e9;--border:#d4c8a8;--shadow:0 2px 8px rgba(26,26,46,.1);--r:6px;}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);line-height:1.7;}
+header{background:var(--ph);color:#fff;padding:1.7rem 1.5rem 1.4rem;text-align:center;}
+header .bc{font-family:'Trebuchet MS',sans-serif;font-size:.75rem;color:rgba(255,255,255,.72);margin-bottom:.4rem;}
+header .pnr{display:inline-flex;align-items:center;justify-content:center;width:2.1rem;height:2.1rem;border-radius:50%;background:rgba(255,255,255,.94);color:var(--ph);font-family:'Trebuchet MS',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.5rem;}
+header h1{font-size:1.65rem;font-weight:normal;margin-bottom:.25rem;}
+header .desc{font-family:'Trebuchet MS',sans-serif;font-size:.84rem;color:rgba(255,255,255,.85);max-width:600px;margin:0 auto;}
+nav.tabs{background:#fff;border-bottom:2px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:50;}
+nav.tabs::-webkit-scrollbar{display:none;}
+nav.tabs button{flex:0 0 auto;background:none;border:none;padding:.62rem .95rem;font-family:'Trebuchet MS',sans-serif;font-size:.78rem;font-weight:600;color:#666;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;}
+nav.tabs button.active,nav.tabs button:hover{color:var(--ph);border-bottom-color:var(--ph);}
+nav.tabs button.done::after{content:' \2713';color:var(--green);font-size:.7rem;}
+main{max-width:880px;margin:0 auto;padding:1.4rem 1rem 3rem;}
+.tab-panel{display:none;scroll-margin-top:50px;}.tab-panel.active{display:block;}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 1.4rem;margin-bottom:1rem;box-shadow:var(--shadow);scroll-margin-top:50px;}
+.card h2{font-size:1.02rem;color:var(--ph);margin-bottom:.6rem;}
+.card p,.card li{font-size:.92rem;line-height:1.72;margin-bottom:.3rem;}
+.intro{font-size:.95rem;line-height:1.75;}
+.tk{border:1.5px solid var(--border);border-radius:var(--r);margin-bottom:.6rem;overflow:hidden;background:#fff;}
+.tk-btn{width:100%;display:flex;align-items:center;gap:.7rem;background:var(--phl);border:none;padding:.7rem .95rem;cursor:pointer;text-align:left;font-family:'Trebuchet MS',sans-serif;}
+.tk-btn:hover{filter:brightness(.97);}
+.tk-num{background:var(--ph);color:#fff;width:1.7rem;height:1.7rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;}
+.tk-tit{flex:1;}
+.tk-name{font-size:.92rem;font-weight:700;color:var(--ink);display:block;}
+.tk-kurz{font-size:.79rem;color:#555;font-weight:400;font-family:Georgia,serif;font-style:italic;}
+.tk-pf{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--ph);transition:transform .2s;flex-shrink:0;}
+.tk-btn.open .tk-pf{transform:rotate(90deg);}
+.tk-body{display:none;padding:.85rem 1rem;border-top:1px solid var(--border);}
+.tk-body p{font-size:.9rem;margin-bottom:.5rem;}
+.tk-lab{font-family:'Trebuchet MS',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ph);margin:.6rem 0 .25rem;}
+.bsp{background:var(--light);border-left:3px solid var(--ph);border-radius:0 4px 4px 0;padding:.45rem .75rem;margin-bottom:.3rem;font-size:.89rem;font-style:italic;}
+.acht{background:var(--gold-l);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;padding:.5rem .8rem;font-size:.86rem;margin-top:.5rem;}
+.acht::before{content:'Achtung: ';font-family:'Trebuchet MS',sans-serif;font-weight:700;font-size:.76rem;color:var(--gold);text-transform:uppercase;letter-spacing:.04em;}
+.warnbox{background:var(--red-l);border:2px solid var(--red);border-radius:var(--r);padding:1rem 1.15rem;margin:.8rem 0;position:relative;}
+.warnbox h3{font-family:'Trebuchet MS',sans-serif;font-size:.92rem;color:var(--red);margin-bottom:.45rem;}
+.warnbox p{font-size:.9rem;margin:0;}
+table.t{width:100%;border-collapse:collapse;font-size:.86rem;margin:.6rem 0;}
+table.t th{background:var(--ph);color:#fff;font-family:'Trebuchet MS',sans-serif;font-size:.78rem;padding:.45rem .6rem;text-align:left;}
+table.t td{padding:.45rem .6rem;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;overflow-wrap:break-word;}
+table.t tr:nth-child(even) td{background:var(--light);}
+.zu-block,.aufg-block{background:var(--light);border:1px solid var(--border);border-radius:var(--r);padding:.75rem .95rem;margin-bottom:.5rem;scroll-margin-top:50px;}
+.zu-nr,.aufg-nr{font-family:'Trebuchet MS',sans-serif;font-size:.72rem;font-weight:700;color:var(--ph);margin-bottom:.22rem;}
+.zu-text{font-size:.94rem;margin-bottom:.45rem;line-height:1.6;font-style:italic;overflow-wrap:break-word;}
+.zu-sel{background:#fff;border:1.5px solid var(--border);border-radius:4px;padding:.32rem .55rem;font-size:.87rem;width:100%;max-width:300px;}
+.zu-sel.ok{border-color:var(--green);background:var(--green-l);}
+.zu-sel.nok{border-color:var(--red);background:var(--red-l);}
+.zu-fb{font-size:.84rem;margin-top:.35rem;line-height:1.55;display:none;padding:.42rem .7rem;border-radius:4px;overflow-wrap:break-word;}
+.zu-fb.show{display:block;}
+.zu-fb.ok{background:var(--green-l);border-left:3px solid var(--green);color:#1b5e20;}
+.zu-fb.nok{background:var(--red-l);border-left:3px solid var(--red);color:#b71c1c;}
+.quiz-block{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:.9rem;box-shadow:var(--shadow);scroll-margin-top:50px;}
+.quiz-nr{font-family:'Trebuchet MS',sans-serif;font-size:.74rem;color:var(--ph);font-weight:700;margin-bottom:.25rem;}
+.quiz-frage{font-size:.95rem;font-weight:600;margin-bottom:.65rem;line-height:1.6;overflow-wrap:break-word;hyphens:auto;}
+.mc-opts{display:flex;flex-direction:column;gap:.3rem;}
+.mc-btn{width:100%;white-space:normal;overflow-wrap:break-word;hyphens:auto;background:var(--light);border:1.5px solid var(--border);border-radius:var(--r);padding:.5rem .82rem;font-size:.89rem;font-family:Georgia,serif;text-align:left;cursor:pointer;line-height:1.5;}
+.mc-btn:hover:not(:disabled){background:var(--phl);border-color:var(--ph);}
+.mc-btn.correct{background:var(--green-l);border-color:var(--green);color:var(--green);font-weight:600;}
+.mc-btn.wrong{background:var(--red-l);border-color:var(--red);color:var(--red);}
+.mc-btn:disabled{cursor:default;opacity:.92;}
+.fb-box{margin-top:.5rem;padding:.55rem .82rem;border-radius:var(--r);font-size:.86rem;line-height:1.6;display:none;overflow-wrap:break-word;}
+.fb-box.show{display:block;}
+.fb-box.correct{background:var(--green-l);border-left:4px solid var(--green);color:#1b5e20;}
+.fb-box.wrong{background:var(--red-l);border-left:4px solid var(--red);color:#b71c1c;}
+.result-card{background:#fff;border:2px solid var(--ph);border-radius:var(--r);padding:1.4rem;text-align:center;}
+.result-score{font-size:1.3rem;color:#555;font-family:'Trebuchet MS',sans-serif;}
+.result-note{font-size:2.3rem;font-weight:700;color:var(--ph);margin:.3rem 0;}
+.tab-nav{display:flex;justify-content:space-between;margin-top:1.3rem;border-top:1px solid var(--border);padding-top:.85rem;gap:.5rem;}
+.btn-nav{font-family:'Trebuchet MS',sans-serif;font-size:.79rem;font-weight:700;padding:.42rem .85rem;border-radius:4px;border:1.5px solid var(--ph);color:var(--ph);background:transparent;cursor:pointer;}
+.btn-nav:hover{background:var(--ph);color:#fff;}
+.btn-nav.primary{background:var(--ph);color:#fff;}
+.btn-alle{font-family:'Trebuchet MS',sans-serif;font-size:.8rem;font-weight:700;background:transparent;border:1.5px solid var(--gold);color:var(--gold);border-radius:4px;padding:.4rem .9rem;cursor:pointer;margin-bottom:.8rem;}
+.btn-alle:hover{background:var(--gold);color:#fff;}
+@media print{nav.tabs,.tab-nav,.btn-alle{display:none!important;}.tab-panel{display:block!important;}
+.tk-body{display:block!important;}.card{box-shadow:none!important;break-inside:avoid;}
+body{background:#fff!important;}@page{margin:1.5cm;}}
+@media(max-width:600px){header h1{font-size:1.32rem;}main{padding:1rem .7rem 2.5rem;}
+.mc-btn{font-size:.87rem;padding:.5rem .65rem;}.tk-name{font-size:.88rem;}}
+</style>
+</head>
+<body>
+<header>
+<div class="bc">Verk&auml;uferin und Verk&auml;ufer &rsaquo; 1. Lehrjahr &rsaquo; Lernfeld 2 &rsaquo; Vertiefung</div>
+<div class="pnr">7</div>
+<h1>Kaufabschluss</h1>
+<p class="desc">Kaufsignale erkennen und Abschlusstechniken</p>
+</header>
+<nav class="tabs">
+<button class="active" data-tab="tech">Techniken</button>
+<button data-tab="ueber">&Uuml;bersicht</button>
+<button data-tab="uebung">&Uuml;bung</button>
+<button data-tab="quiz">Quiz</button>
+</nav>
+<main>
+<section class="tab-panel active" id="tab-tech">
+<div class="card"><h2>Worum es geht</h2><p class="intro">Viele Verk&#228;ufer verlieren den Abschluss, weil sie ihn nicht anbieten &#8211; oder weil sie nach der Entscheidung weiterreden. Der richtige Moment l&#228;sst sich an klaren Signalen erkennen, und f&#252;r den Abschluss selbst gibt es erprobte Techniken.</p></div>
+<div class="card">
+<h2>Die Techniken im Einzelnen</h2>
+<p style="font-size:.86rem;color:#666;margin-bottom:.6rem;">Klicke auf eine Technik, um Erkl&auml;rung, Formulierungen und Hinweise zu sehen.</p>
+<button class="btn-alle" id="btn-alle">Alle Techniken aufklappen</button>
+<div id="tech-box"></div></div>
+<div class="tab-nav"><span></span><button class="btn-nav primary" data-goto="ueber">Weiter: &Uuml;bersicht &rarr;</button></div>
+</section>
+
+<section class="tab-panel" id="tab-ueber">
+<div class="card"><h2>Auf einen Blick</h2>
+<table class="t"><thead><tr><th>Art des Signals</th><th>Beispiel</th></tr></thead><tbody><tr><td>Verbal: Fragen zur Zeit nach dem Kauf</td><td>Wie lange ist die Garantie? Wann k&#246;nnen Sie liefern?</td></tr><tr><td>Verbal: Fragen zur Handhabung</td><td>Wie muss ich das pflegen? Kann ich das waschen?</td></tr><tr><td>Verbal: Besitzsprache</td><td>Passt die Farbe zu meiner Hose? Wo stelle ich das hin?</td></tr><tr><td>Nonverbal: Ware festhalten</td><td>Der Kunde legt den Artikel nicht mehr aus der Hand</td></tr><tr><td>Nonverbal: Zustimmung</td><td>Nicken, entspannte Haltung, l&#228;ngerer Blick auf die Ware</td></tr><tr><td>Nonverbal: Blick zur Kasse</td><td>Der Kunde orientiert sich Richtung Kasse oder greift zum Portemonnaie</td></tr></tbody></table></div>
+<div class="card"><div class="warnbox"><h3>Der h&#228;ufigste Fehler</h3><p><strong>Nach der Entscheidung weiterreden.</strong><br><br>Der Kunde hat Ja gesagt &#8211; und der Verk&#228;ufer nennt noch drei weitere Vorteile. Das Ergebnis: Der Kunde beginnt neu nachzudenken, entdeckt Zweifel und sagt am Ende: <em>&bdquo;Ich &#252;berlege es mir noch einmal.&ldquo;</em><br><br><strong>Regel:</strong> Sobald die Entscheidung gefallen ist, h&#246;rst du mit dem Argumentieren auf. Best&#228;tige kurz die Wahl und gehe zum Abschluss &#252;ber.<br><br>Ebenso t&#246;dlich: <em>&bdquo;Wollen Sie es sich noch &#252;berlegen?&ldquo;</em> &#8211; damit schickst du den Kunden aktiv aus dem Laden.</p></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="tech">&larr; Techniken</button>
+<button class="btn-nav primary" data-goto="uebung">Weiter: &Uuml;bung &rarr;</button></div>
+</section>
+
+<section class="tab-panel" id="tab-uebung">
+<div class="card"><h2>Welche Technik ist das?</h2>
+<p style="font-size:.88rem;color:#555;margin-bottom:.6rem;">Ordne jede Formulierung der passenden Technik zu.</p>
+<div id="zu-box"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="ueber">&larr; &Uuml;bersicht</button>
+<button class="btn-nav primary" data-goto="quiz">Weiter: Quiz &rarr;</button></div>
+</section>
+
+<section class="tab-panel" id="tab-quiz">
+<div class="card"><h2>Quiz</h2><div id="quiz-box"></div></div>
+<div class="card" id="result-card" style="display:none;">
+<h2 style="text-align:center;">Dein Ergebnis</h2>
+<div class="result-card"><div class="result-score" id="res-score">&ndash;</div>
+<div class="result-note" id="res-note">&ndash;</div>
+<p id="res-txt" style="font-size:.94rem;color:#444;"></p></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="uebung">&larr; &Uuml;bung</button><span></span></div>
+</section>
+</main>
+<script>
+(function(){
+"use strict";
+var D={"nr": 7, "farbe": "#c84b31", "titel": "Kaufabschluss", "unter": "Kaufsignale erkennen und Abschlusstechniken", "intro": "Viele Verk\u00e4ufer verlieren den Abschluss, weil sie ihn nicht anbieten \u2013 oder weil sie nach der Entscheidung weiterreden. Der richtige Moment l\u00e4sst sich an klaren Signalen erkennen, und f\u00fcr den Abschluss selbst gibt es erprobte Techniken.", "tech": [{"n": "Alternativtechnik", "k": "Du gibst zwei M\u00f6glichkeiten vor \u2013 beide f\u00fchren zum Kauf.", "wie": "Statt zu fragen <em>ob</em> gekauft wird, fragst du <em>wie</em>. Der Kunde entscheidet zwischen zwei Varianten, nicht zwischen Ja und Nein.", "bsp": ["Soll ich sie einpacken oder m\u00f6chten Sie sie gleich anbehalten?", "Zahlen Sie bar oder mit Karte?", "M\u00f6chten Sie das blaue oder das schwarze Modell?"], "acht": "Nur zwei Varianten anbieten. Und erst einsetzen, wenn Kaufsignale da sind - sonst wirkt es aufdringlich."}, {"n": "Zusammenfassungstechnik", "k": "Du fasst die Vorteile kurz zusammen, die zum Bedarf passen.", "wie": "Wiederhole in ein bis zwei Saetzen genau die Punkte, die dem Kunden wichtig waren. Er hoert seine eigenen Kriterien erfuellt - das gibt Sicherheit.", "bsp": ["Sie wollten etwas Leichtes, Wasserdichtes f\u00fcrs Radfahren \u2013 genau das haben Sie hier. Soll ich sie einpacken?"], "acht": "Nur Punkte nennen, die der Kunde selbst genannt hat. Sonst wirkt es wie eine Werbebroschuere."}, {"n": "Teilentscheidungstechnik", "k": "Du l\u00e4sst \u00fcber Einzelheiten entscheiden statt \u00fcber den Kauf.", "wie": "Der Kunde trifft kleine, leichte Entscheidungen: Farbe, Groesse, Lieferung. Mit jeder Teilentscheidung ist er innerlich naeher am Kauf.", "bsp": ["Welche Gr\u00f6\u00dfe soll ich Ihnen einpacken?", "M\u00f6chten Sie die Impr\u00e4gnierung gleich dazu?", "Soll die Lieferung an die Wohnadresse gehen?"], "acht": "Nicht zu frueh - erst wenn der Kunde grundsaetzlich ueberzeugt wirkt."}, {"n": "Bilanzmethode", "k": "Ihr stellt gemeinsam Vor- und Nachteile gegen\u00fcber.", "wie": "Bei unentschlossenen Kunden. Ihr sammelt beide Seiten - meist ueberwiegen die Vorteile deutlich, und der Kunde sieht es selbst.", "bsp": ["Lassen Sie uns kurz sammeln: Daf\u00fcr sprechen der Halt, das Gewicht und die Garantie. Dagegen der Preis. Wie sehen Sie das?"], "acht": "Ehrlich bleiben. Wer die Nachteile unter den Tisch fallen laesst, verliert die Glaubwuerdigkeit."}, {"n": "Direkte Abschlussfrage", "k": "Du fragst geradeheraus nach der Entscheidung.", "wie": "Klar und ohne Umschweife. Passt bei entschlossenen Kunden, die schon deutliche Kaufsignale gesendet haben.", "bsp": ["Nehmen Sie die Schuhe dann so mit?", "Soll ich das f\u00fcr Sie fertig machen?"], "acht": "Nicht 'Moechten Sie kaufen?' - diese Formulierung laedt zum Nein ein. Und danach schweigen: Wer zuerst spricht, verliert."}, {"n": "Best\u00e4tigungstechnik", "k": "Du best\u00e4tigst die Entscheidung des Kunden.", "wie": "Nach der Zusage gibst du dem Kunden das gute Gefuehl, richtig entschieden zu haben. Das beugt spaeteren Zweifeln und Ruecknahmen vor.", "bsp": ["Damit machen Sie nichts falsch \u2013 das Modell ist genau f\u00fcr Ihren Einsatz gemacht.", "Eine gute Wahl \u2013 damit sind Sie die n\u00e4chsten Jahre gut ausger\u00fcstet."], "acht": "Kurz halten. Wer nach der Entscheidung weiter argumentiert, weckt neue Zweifel."}], "tabelle": {"kopf": ["Art des Signals", "Beispiel"], "zeilen": [["Verbal: Fragen zur Zeit nach dem Kauf", "Wie lange ist die Garantie? Wann k\u00f6nnen Sie liefern?"], ["Verbal: Fragen zur Handhabung", "Wie muss ich das pflegen? Kann ich das waschen?"], ["Verbal: Besitzsprache", "Passt die Farbe zu meiner Hose? Wo stelle ich das hin?"], ["Nonverbal: Ware festhalten", "Der Kunde legt den Artikel nicht mehr aus der Hand"], ["Nonverbal: Zustimmung", "Nicken, entspannte Haltung, l\u00e4ngerer Blick auf die Ware"], ["Nonverbal: Blick zur Kasse", "Der Kunde orientiert sich Richtung Kasse oder greift zum Portemonnaie"]]}, "warn": {"t": "Der h\u00e4ufigste Fehler", "txt": "<strong>Nach der Entscheidung weiterreden.</strong><br><br>Der Kunde hat Ja gesagt \u2013 und der Verk\u00e4ufer nennt noch drei weitere Vorteile. Das Ergebnis: Der Kunde beginnt neu nachzudenken, entdeckt Zweifel und sagt am Ende: <em>&bdquo;Ich \u00fcberlege es mir noch einmal.&ldquo;</em><br><br><strong>Regel:</strong> Sobald die Entscheidung gefallen ist, h\u00f6rst du mit dem Argumentieren auf. Best\u00e4tige kurz die Wahl und gehe zum Abschluss \u00fcber.<br><br>Ebenso t\u00f6dlich: <em>&bdquo;Wollen Sie es sich noch \u00fcberlegen?&ldquo;</em> \u2013 damit schickst du den Kunden aktiv aus dem Laden."}, "zu": [{"t": "Soll ich sie einpacken oder m\u00f6chten Sie sie gleich anbehalten?", "l": "Alternativtechnik", "e": "Zwei Moeglichkeiten, beide fuehren zum Kauf."}, {"t": "Sie wollten etwas Leichtes und Wasserdichtes \u2013 genau das haben Sie hier.", "l": "Zusammenfassungstechnik", "e": "Die Kriterien des Kunden werden kurz wiederholt und als erfuellt gezeigt."}, {"t": "Welche Gr\u00f6\u00dfe soll ich Ihnen einpacken?", "l": "Teilentscheidungstechnik", "e": "Der Kunde entscheidet ueber ein Detail statt ueber den Kauf selbst."}, {"t": "Daf\u00fcr sprechen Halt, Gewicht und Garantie. Dagegen der Preis. Wie sehen Sie das?", "l": "Bilanzmethode", "e": "Vor- und Nachteile werden gemeinsam gegenuebergestellt."}, {"t": "Soll ich das f\u00fcr Sie fertig machen?", "l": "Direkte Abschlussfrage", "e": "Klare Frage nach der Entscheidung, ohne Umschweife."}, {"t": "Damit machen Sie nichts falsch \u2013 das passt genau zu Ihrem Einsatz.", "l": "Best\u00e4tigungstechnik", "e": "Bestaetigt die Wahl und beugt spaeteren Zweifeln vor."}, {"t": "Zahlen Sie bar oder mit Karte?", "l": "Alternativtechnik", "e": "Auch hier fuehren beide Antworten zum Abschluss."}, {"t": "M\u00f6chten Sie die Impr\u00e4gnierung gleich dazu?", "l": "Teilentscheidungstechnik", "e": "Kleine Entscheidung, die den Kunden innerlich naeher an den Kauf bringt."}], "quiz": [{"f": "Woran erkennst du ein verbales Kaufsignal?", "o": ["Der Kunde fragt nach Garantie oder Lieferzeit", "Der Kunde schaut auf die Uhr", "Der Kunde tritt einen Schritt zur\u00fcck \u2013 das stimmt so nicht", "Der Kunde wechselt das Thema"], "c": 0, "l": "Fragen zur Zeit nach dem Kauf zeigen: Der Kunde denkt schon wie ein Besitzer. Das ist ein klares Kaufsignal."}, {"f": "Welche Abschlussfrage ist eine Alternativtechnik?", "o": ["M\u00f6chten Sie kaufen?", "Haben Sie noch Fragen?", "Soll ich einpacken oder nehmen Sie es gleich mit?", "Wollen Sie es sich \u00fcberlegen? was hier nicht zutrifft"], "c": 2, "l": "Beide Antworten fuehren zum Kauf. Die anderen Formulierungen laden zum Nein ein oder verzoegern die Entscheidung."}, {"f": "Was ist der h\u00e4ufigste Fehler beim Kaufabschluss?", "o": ["Zu fr\u00fch die Alternativfrage stellen", "Nach der Entscheidung weiter argumentieren", "Die Entscheidung des Kunden best\u00e4tigen \u2013 das stimmt so nicht", "Kaufsignale beobachten"], "c": 1, "l": "Weiterreden weckt neue Zweifel. Sobald die Entscheidung gefallen ist, hoerst du mit dem Argumentieren auf."}, {"f": "Wof\u00fcr eignet sich die Bilanzmethode besonders?", "o": ["F\u00fcr entschlossene Kunden mit klaren Kaufsignalen", "F\u00fcr Stammkunden", "F\u00fcr Kunden in Eile", "F\u00fcr unentschlossene Kunden, die noch abw\u00e4gen"], "c": 3, "l": "Ihr sammelt gemeinsam Vor- und Nachteile. Meist ueberwiegen die Vorteile deutlich - und der Kunde sieht es selbst."}, {"f": "Was bewirkt die Teilentscheidungstechnik?", "o": ["Der Kunde entscheidet \u00fcber Einzelheiten und kommt dem Kauf so n\u00e4her", "Der Kunde bekommt einen Preisnachlass was den Kunden meist verunsichert", "Der Kunde muss sofort bezahlen", "Der Kunde vergleicht mehrere Artikel"], "c": 0, "l": "Kleine, leichte Entscheidungen zu Farbe, Groesse oder Lieferung. Mit jeder ist der Kunde innerlich naeher am Kauf."}, {"f": "Warum solltest du die Entscheidung des Kunden best\u00e4tigen?", "o": ["Um noch weitere Artikel zu verkaufen", "Weil es gesetzlich vorgeschrieben ist \u2013 das stimmt so nicht", "Um sp\u00e4teren Zweifeln und R\u00fccknahmen vorzubeugen", "Um die Garantie zu verl\u00e4ngern"], "c": 2, "l": "Eine kurze Bestaetigung gibt dem Kunden das gute Gefuehl, richtig entschieden zu haben. Das beugt Kaufreue vor."}]};
+var TOTAL=D.quiz.length;var gAns=0;
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('nav.tabs button').forEach(function(b){b.classList.remove('active');});
+  var p=document.getElementById('tab-'+id);if(p)p.classList.add('active');
+  var b=document.querySelector('[data-tab="'+id+'"]');if(b)b.classList.add('active');
+  setTimeout(function(){window.scrollTo({top:0,behavior:'instant'});},0);
+  if(id==='uebung')buildZu();
+}
+document.querySelectorAll('nav.tabs button').forEach(function(b){
+  b.addEventListener('click',function(){showTab(this.getAttribute('data-tab'));});});
+document.querySelectorAll('[data-goto]').forEach(function(b){
+  b.addEventListener('click',function(){showTab(this.getAttribute('data-goto'));});});
+
+function buildTech(){
+  var c=document.getElementById('tech-box');if(!c)return;
+  D.tech.forEach(function(t,i){
+    var w=document.createElement('div');w.className='tk';
+    var b=document.createElement('button');b.className='tk-btn';
+    b.innerHTML='<span class="tk-num">'+(i+1)+'</span>'
+      +'<span class="tk-tit"><span class="tk-name">'+t.n+'</span>'
+      +'<span class="tk-kurz">'+t.k+'</span></span><span class="tk-pf"></span>';
+    var body=document.createElement('div');body.className='tk-body';
+    var h='<p>'+t.wie+'</p><div class="tk-lab">Formulierungsbeispiele</div>';
+    t.bsp.forEach(function(x){h+='<div class="bsp">'+x+'</div>';});
+    h+='<div class="acht">'+t.acht+'</div>';
+    body.innerHTML=h;
+    b.addEventListener('click',function(){
+      var off=body.style.display!=='block';
+      body.style.display=off?'block':'none';
+      b.classList.toggle('open',off);
+    });
+    w.appendChild(b);w.appendChild(body);c.appendChild(w);
+  });
+  var ab=document.getElementById('btn-alle');
+  if(ab){var offen=false;
+    ab.addEventListener('click',function(){
+      offen=!offen;
+      c.querySelectorAll('.tk-body').forEach(function(x){x.style.display=offen?'block':'none';});
+      c.querySelectorAll('.tk-btn').forEach(function(x){x.classList.toggle('open',offen);});
+      ab.textContent=offen?'Alle Techniken zuklappen':'Alle Techniken aufklappen';
+    });}
+}
+function buildZu(){
+  var c=document.getElementById('zu-box');if(!c||c.children.length>0)return;
+  var opts=D.tech.map(function(t){return t.n;});
+  D.zu.forEach(function(it,i){
+    var bl=document.createElement('div');bl.className='zu-block';
+    var nr=document.createElement('div');nr.className='zu-nr';
+    nr.textContent='Beispiel '+(i+1)+' von '+D.zu.length;
+    var tx=document.createElement('div');tx.className='zu-text';
+    tx.innerHTML='\u201e'+it.t+'\u201c';
+    var se=document.createElement('select');se.className='zu-sel';
+    var o0=document.createElement('option');o0.value='';o0.textContent='-- Technik w\u00e4hlen --';
+    se.appendChild(o0);
+    opts.forEach(function(o){
+      var op=document.createElement('option');op.value=o;op.textContent=o;se.appendChild(op);});
+    var fb=document.createElement('div');fb.className='zu-fb';
+    se.addEventListener('change',function(){
+      if(!se.value)return;
+      var ok=(se.value===it.l);
+      se.className='zu-sel '+(ok?'ok':'nok');
+      fb.textContent=ok?('\u2713 Richtig! '+it.e):('\u2717 Richtig w\u00e4re: '+it.l+'. '+it.e);
+      fb.className='zu-fb show '+(ok?'ok':'nok');
+    });
+    bl.appendChild(nr);bl.appendChild(tx);bl.appendChild(se);bl.appendChild(fb);
+    c.appendChild(bl);
+  });
+}
+var qA=0,qC=0;
+function buildQuiz(){
+  var c=document.getElementById('quiz-box');if(!c)return;
+  D.quiz.forEach(function(q,idx){
+    var bl=document.createElement('div');bl.className='quiz-block';
+    var nr=document.createElement('div');nr.className='quiz-nr';
+    nr.textContent='Frage '+(idx+1)+' von '+D.quiz.length;
+    var fr=document.createElement('div');fr.className='quiz-frage';fr.textContent=q.f;
+    var od=document.createElement('div');od.className='mc-opts';
+    var fb=document.createElement('div');fb.className='fb-box';
+    bl.appendChild(nr);bl.appendChild(fr);bl.appendChild(od);bl.appendChild(fb);
+    c.appendChild(bl);
+    q.o.forEach(function(o,oi){
+      var b=document.createElement('button');b.className='mc-btn';b.textContent=o;
+      b.addEventListener('click',function(){
+        bl.querySelectorAll('.mc-btn').forEach(function(x){x.disabled=true;});
+        var ok=(oi===q.c);
+        b.classList.add(ok?'correct':'wrong');
+        if(!ok)od.querySelectorAll('.mc-btn')[q.c].classList.add('correct');
+        fb.textContent=ok?q.l:('Nicht ganz. '+q.l);
+        fb.className='fb-box show '+(ok?'correct':'wrong');
+        qA++;if(ok)qC++;
+        if(qA===D.quiz.length)setTimeout(showResult,700);
+      });
+      od.appendChild(b);
+    });
+  });
+}
+function showResult(){
+  var card=document.getElementById('result-card');if(card)card.style.display='block';
+  var pct=Math.round(qC/D.quiz.length*100);
+  var note,txt;
+  if(pct>=92){note='1';txt='Sehr gut! Du beherrschst die Techniken sicher.';}
+  else if(pct>=81){note='2';txt='Gut! Nur noch kleine L\u00fccken.';}
+  else if(pct>=67){note='3';txt='Befriedigend. Schau dir die Techniken noch einmal an.';}
+  else if(pct>=50){note='4';txt='Ausreichend. Arbeite den Techniken-Tab noch einmal durch.';}
+  else if(pct>=30){note='5';txt='Noch nicht ausreichend. Gehe die Techniken in Ruhe durch.';}
+  else {note='6';txt='Starte am besten noch einmal von vorn.';}
+  var s=document.getElementById('res-score');
+  if(s)s.textContent=qC+' von '+D.quiz.length+' richtig ('+pct+' %)';
+  var n=document.getElementById('res-note');if(n)n.textContent='Note '+note;
+  var t=document.getElementById('res-txt');if(t)t.textContent=txt;
+  var qt=document.querySelector('[data-tab="quiz"]');if(qt)qt.classList.add('done');
+  var nv=document.querySelector('nav.tabs');var nh=nv?nv.offsetHeight:40;
+  var r=card.getBoundingClientRect();
+  window.scrollTo({top:window.pageYOffset+r.top-nh-8,behavior:'smooth'});
+}
+document.addEventListener('DOMContentLoaded',function(){buildTech();buildQuiz();});
+})();
+</script>
+</body>
+</html>
