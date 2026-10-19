@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Preisnennung &ndash; Techniken</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#1a1a2e;--bg:#f5f0e8;--light:#faf7f2;--ph:#b8860b;--phl:#f7f2e6;
+--teal:#2d6e7e;--teal-l:#e4f0f3;--gold:#b8860b;--gold-l:#fdf6dc;--red:#c84b31;--red-l:#fdecea;
+--green:#2e7d32;--green-l:#e8f5e9;--border:#d4c8a8;--shadow:0 2px 8px rgba(26,26,46,.1);--r:6px;}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);line-height:1.7;}
+header{background:var(--ph);color:#fff;padding:1.7rem 1.5rem 1.4rem;text-align:center;}
+header .bc{font-family:'Trebuchet MS',sans-serif;font-size:.75rem;color:rgba(255,255,255,.72);margin-bottom:.4rem;}
+header .pnr{display:inline-flex;align-items:center;justify-content:center;width:2.1rem;height:2.1rem;border-radius:50%;background:rgba(255,255,255,.94);color:var(--ph);font-family:'Trebuchet MS',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.5rem;}
+header h1{font-size:1.65rem;font-weight:normal;margin-bottom:.25rem;}
+header .desc{font-family:'Trebuchet MS',sans-serif;font-size:.84rem;color:rgba(255,255,255,.85);max-width:600px;margin:0 auto;}
+nav.tabs{background:#fff;border-bottom:2px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:50;}
+nav.tabs::-webkit-scrollbar{display:none;}
+nav.tabs button{flex:0 0 auto;background:none;border:none;padding:.62rem .95rem;font-family:'Trebuchet MS',sans-serif;font-size:.78rem;font-weight:600;color:#666;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;}
+nav.tabs button.active,nav.tabs button:hover{color:var(--ph);border-bottom-color:var(--ph);}
+nav.tabs button.done::after{content:' \2713';color:var(--green);font-size:.7rem;}
+main{max-width:880px;margin:0 auto;padding:1.4rem 1rem 3rem;}
+.tab-panel{display:none;scroll-margin-top:50px;}.tab-panel.active{display:block;}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 1.4rem;margin-bottom:1rem;box-shadow:var(--shadow);scroll-margin-top:50px;}
+.card h2{font-size:1.02rem;color:var(--ph);margin-bottom:.6rem;}
+.card p,.card li{font-size:.92rem;line-height:1.72;margin-bottom:.3rem;}
+.intro{font-size:.95rem;line-height:1.75;}
+.tk{border:1.5px solid var(--border);border-radius:var(--r);margin-bottom:.6rem;overflow:hidden;background:#fff;}
+.tk-btn{width:100%;display:flex;align-items:center;gap:.7rem;background:var(--phl);border:none;padding:.7rem .95rem;cursor:pointer;text-align:left;font-family:'Trebuchet MS',sans-serif;}
+.tk-btn:hover{filter:brightness(.97);}
+.tk-num{background:var(--ph);color:#fff;width:1.7rem;height:1.7rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;}
+.tk-tit{flex:1;}
+.tk-name{font-size:.92rem;font-weight:700;color:var(--ink);display:block;}
+.tk-kurz{font-size:.79rem;color:#555;font-weight:400;font-family:Georgia,serif;font-style:italic;}
+.tk-pf{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--ph);transition:transform .2s;flex-shrink:0;}
+.tk-btn.open .tk-pf{transform:rotate(90deg);}
+.tk-body{display:none;padding:.85rem 1rem;border-top:1px solid var(--border);}
+.tk-body p{font-size:.9rem;margin-bottom:.5rem;}
+.tk-lab{font-family:'Trebuchet MS',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ph);margin:.6rem 0 .25rem;}
+.bsp{background:var(--light);border-left:3px solid var(--ph);border-radius:0 4px 4px 0;padding:.45rem .75rem;margin-bottom:.3rem;font-size:.89rem;font-style:italic;}
+.acht{background:var(--gold-l);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;padding:.5rem .8rem;font-size:.86rem;margin-top:.5rem;}
+.acht::before{content:'Achtung: ';font-family:'Trebuchet MS',sans-serif;font-weight:700;font-size:.76rem;color:var(--gold);text-transform:uppercase;letter-spacing:.04em;}
+.warnbox{background:var(--red-l);border:2px solid var(--red);border-radius:var(--r);padding:1rem 1.15rem;margin:.8rem 0;position:relative;}
+.warnbox h3{font-family:'Trebuchet MS',sans-serif;font-size:.92rem;color:var(--red);margin-bottom:.45rem;}
+.warnbox p{font-size:.9rem;margin:0;}
+table.t{width:100%;border-collapse:collapse;font-size:.86rem;margin:.6rem 0;}
+table.t th{background:var(--ph);color:#fff;font-family:'Trebuchet MS',sans-serif;font-size:.78rem;padding:.45rem .6rem;text-align:left;}
+table.t td{padding:.45rem .6rem;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;overflow-wrap:break-word;}
+table.t tr:nth-child(even) td{background:var(--light);}
+.zu-block,.aufg-block{background:var(--light);border:1px solid var(--border);border-radius:var(--r);padding:.75rem .95rem;margin-bottom:.5rem;scroll-margin-top:50px;}
+.zu-nr,.aufg-nr{font-family:'Trebuchet MS',sans-serif;font-size:.72rem;font-weight:700;color:var(--ph);margin-bottom:.22rem;}
+.zu-text{font-size:.94rem;margin-bottom:.45rem;line-height:1.6;font-style:italic;overflow-wrap:break-word;}
+.zu-sel{background:#fff;border:1.5px solid var(--border);border-radius:4px;padding:.32rem .55rem;font-size:.87rem;width:100%;max-width:300px;}
+.zu-sel.ok{border-color:var(--green);background:var(--green-l);}
+.zu-sel.nok{border-color:var(--red);background:var(--red-l);}
+.zu-fb{font-size:.84rem;margin-top:.35rem;line-height:1.55;display:none;padding:.42rem .7rem;border-radius:4px;overflow-wrap:break-word;}
+.zu-fb.show{display:block;}
+.zu-fb.ok{background:var(--green-l);border-left:3px solid var(--green);color:#1b5e20;}
+.zu-fb.nok{background:var(--red-l);border-left:3px solid var(--red);color:#b71c1c;}
+.quiz-block{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:.9rem;box-shadow:var(--shadow);scroll-margin-top:50px;}
+.quiz-nr{font-family:'Trebuchet MS',sans-serif;font-size:.74rem;color:var(--ph);font-weight:700;margin-bottom:.25rem;}
+.quiz-frage{font-size:.95rem;font-weight:600;margin-bottom:.65rem;line-height:1.6;overflow-wrap:break-word;hyphens:auto;}
+.mc-opts{display:flex;flex-direction:column;gap:.3rem;}
+.mc-btn{width:100%;white-space:normal;overflow-wrap:break-word;hyphens:auto;background:var(--light);border:1.5px solid var(--border);border-radius:var(--r);padding:.5rem .82rem;font-size:.89rem;font-family:Georgia,serif;text-align:left;cursor:pointer;line-height:1.5;}
+.mc-btn:hover:not(:disabled){background:var(--phl);border-color:var(--ph);}
+.mc-btn.correct{background:var(--green-l);border-color:var(--green);color:var(--green);font-weight:600;}
+.mc-btn.wrong{background:var(--red-l);border-color:var(--red);color:var(--red);}
+.mc-btn:disabled{cursor:default;opacity:.92;}
+.fb-box{margin-top:.5rem;padding:.55rem .82rem;border-radius:var(--r);font-size:.86rem;line-height:1.6;display:none;overflow-wrap:break-word;}
+.fb-box.show{display:block;}
+.fb-box.correct{background:var(--green-l);border-left:4px solid var(--green);color:#1b5e20;}
+.fb-box.wrong{background:var(--red-l);border-left:4px solid var(--red);color:#b71c1c;}
+.result-card{background:#fff;border:2px solid var(--ph);border-radius:var(--r);padding:1.4rem;text-align:center;}
+.result-score{font-size:1.3rem;color:#555;font-family:'Trebuchet MS',sans-serif;}
+.result-note{font-size:2.3rem;font-weight:700;color:var(--ph);margin:.3rem 0;}
+.tab-nav{display:flex;justify-content:space-between;margin-top:1.3rem;border-top:1px solid var(--border);padding-top:.85rem;gap:.5rem;}
+.btn-nav{font-family:'Trebuchet MS',sans-serif;font-size:.79rem;font-weight:700;padding:.42rem .85rem;border-radius:4px;border:1.5px solid var(--ph);color:var(--ph);background:transparent;cursor:pointer;}
+.btn-nav:hover{background:var(--ph);color:#fff;}
+.btn-nav.primary{background:var(--ph);color:#fff;}
+.btn-alle{font-family:'Trebuchet MS',sans-serif;font-size:.8rem;font-weight:700;background:transparent;border:1.5px solid var(--gold);color:var(--gold);border-radius:4px;padding:.4rem .9rem;cursor:pointer;margin-bottom:.8rem;}
+.btn-alle:hover{background:var(--gold);color:#fff;}
+@media print{nav.tabs,.tab-nav,.btn-alle{display:none!important;}.tab-panel{display:block!important;}
+.tk-body{display:block!important;}.card{box-shadow:none!important;break-inside:avoid;}
+body{background:#fff!important;}@page{margin:1.5cm;}}
+@media(max-width:600px){header h1{font-size:1.32rem;}main{padding:1rem .7rem 2.5rem;}
+.mc-btn{font-size:.87rem;padding:.5rem .65rem;}.tk-name{font-size:.88rem;}}
+</style>
+</head>
+<body>
+<header>
+<div class="bc">Verk&auml;uferin und Verk&auml;ufer &rsaquo; 1. Lehrjahr &rsaquo; Lernfeld 2 &rsaquo; Vertiefung</div>
+<div class="pnr">5</div>
+<h1>Preisnennung</h1>
+<p class="desc">Preisnennungstechniken &#8211; den Preis richtig platzieren</p>
+</header>
+<nav class="tabs">
+<button class="active" data-tab="tech">Techniken</button>
+<button data-tab="ueber">&Uuml;bersicht</button>
+<button data-tab="uebung">&Uuml;bung</button>
+<button data-tab="quiz">Quiz</button>
+</nav>
+<main>
+<section class="tab-panel active" id="tab-tech">
+<div class="card"><h2>Worum es geht</h2><p class="intro">Der Preis ist f&#252;r viele Verk&#228;ufer der unangenehmste Moment im Gespr&#228;ch. Dabei gibt es klare Techniken, mit denen der Preis nicht als Belastung, sondern als angemessener Gegenwert wirkt. Entscheidend ist: <strong>wann</strong> du ihn nennst und <strong>womit du ihn verbindest</strong>.</p></div>
+<div class="card">
+<h2>Die Techniken im Einzelnen</h2>
+<p style="font-size:.86rem;color:#666;margin-bottom:.6rem;">Klicke auf eine Technik, um Erkl&auml;rung, Formulierungen und Hinweise zu sehen.</p>
+<button class="btn-alle" id="btn-alle">Alle Techniken aufklappen</button>
+<div id="tech-box"></div></div>
+<div class="tab-nav"><span></span><button class="btn-nav primary" data-goto="ueber">Weiter: &Uuml;bersicht &rarr;</button></div>
+</section>
+
+<section class="tab-panel" id="tab-ueber">
+<div class="card"><h2>Auf einen Blick</h2>
+<table class="t"><thead><tr><th>Technik</th><th>Kurzformel</th><th>Geeignet bei</th></tr></thead><tbody><tr><td>Sandwich</td><td>Nutzen &#8211; Preis &#8211; Nutzen</td><td>Immer als Grundtechnik</td></tr><tr><td>Verkleinerung</td><td>Preis &#247; Nutzungsdauer</td><td>Langlebigen, teureren Artikeln</td></tr><tr><td>Differenz</td><td>Nur den Mehrpreis nennen</td><td>Vergleich zweier Artikel</td></tr><tr><td>Addition</td><td>Alle Leistungen aufz&#228;hlen</td><td>Wenn viel im Preis enthalten ist</td></tr><tr><td>Multiplikation</td><td>Nutzen hochrechnen</td><td>Bei h&#228;ufiger Nutzung</td></tr><tr><td>Vergleich</td><td>Neben eine bekannte Ausgabe stellen</td><td>Wenn der Preis abstrakt wirkt</td></tr></tbody></table></div>
+<div class="card"><div class="warnbox"><h3>Zwei Grundregeln</h3><p><strong>1. Der Zeitpunkt.</strong> Nenne den Preis erst, wenn der Kunde den Nutzen kennt. Vorher ist er nur eine Zahl ohne Gegenwert.<br><br><strong>2. Die Haltung.</strong> Nenne den Preis <em>klar, deutlich und ohne Z&#246;gern</em>. Wer leise wird, schneller spricht oder sich entschuldigt, signalisiert selbst Zweifel am Wert.<br><br>Vermeide: <em>&bdquo;leider&ldquo;, &bdquo;nicht ganz billig&ldquo;, &bdquo;da m&#252;ssen Sie ... bezahlen&ldquo;</em>. Sage stattdessen schlicht: <strong>&bdquo;Der Preis betr&#228;gt ...&ldquo;</strong></p></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="tech">&larr; Techniken</button>
+<button class="btn-nav primary" data-goto="uebung">Weiter: &Uuml;bung &rarr;</button></div>
+</section>
+
+<section class="tab-panel" id="tab-uebung">
+<div class="card"><h2>Welche Technik ist das?</h2>
+<p style="font-size:.88rem;color:#555;margin-bottom:.6rem;">Ordne jede Formulierung der passenden Technik zu.</p>
+<div id="zu-box"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="ueber">&larr; &Uuml;bersicht</button>
+<button class="btn-nav primary" data-goto="quiz">Weiter: Quiz &rarr;</button></div>
+</section>
+
+<section class="tab-panel" id="tab-quiz">
+<div class="card"><h2>Quiz</h2><div id="quiz-box"></div></div>
+<div class="card" id="result-card" style="display:none;">
+<h2 style="text-align:center;">Dein Ergebnis</h2>
+<div class="result-card"><div class="result-score" id="res-score">&ndash;</div>
+<div class="result-note" id="res-note">&ndash;</div>
+<p id="res-txt" style="font-size:.94rem;color:#444;"></p></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="uebung">&larr; &Uuml;bung</button><span></span></div>
+</section>
+</main>
+<script>
+(function(){
+"use strict";
+var D={"nr": 5, "farbe": "#b8860b", "titel": "Preisnennung", "unter": "Preisnennungstechniken \u2013 den Preis richtig platzieren", "intro": "Der Preis ist f\u00fcr viele Verk\u00e4ufer der unangenehmste Moment im Gespr\u00e4ch. Dabei gibt es klare Techniken, mit denen der Preis nicht als Belastung, sondern als angemessener Gegenwert wirkt. Entscheidend ist: <strong>wann</strong> du ihn nennst und <strong>womit du ihn verbindest</strong>.", "tech": [{"n": "Sandwich-Methode", "k": "Der Preis steht zwischen zwei Nutzenargumenten.", "wie": "Nutzen - Preis - Nutzen. Der Preis steht nie am Satzende, sondern in der Mitte. So bleibt nicht die Zahl als Letztes im Ohr, sondern der Vorteil.", "bsp": ["Der Schuh ist komplett wasserdicht, kostet 89 Euro und Sie haben zwei Jahre Garantie darauf.", "Die Jacke ist atmungsaktiv, liegt bei 129 Euro und l\u00e4sst sich bei 40 Grad waschen."], "acht": "Das zweite Argument muss echt sein, nicht nur angehaengt. Sonst wirkt es aufgesetzt."}, {"n": "Verkleinerungsmethode", "k": "Du rechnest den Preis auf einen kleinen Zeitraum herunter.", "wie": "Teile den Preis durch die voraussichtliche Nutzungsdauer. Aus einer grossen Summe wird ein kleiner Betrag pro Tag oder Monat.", "bsp": ["120 Euro f\u00fcr drei Jahre \u2013 das sind noch nicht einmal 12 Cent am Tag.", "Bei zwei Jahren Nutzung kostet Sie die Jacke rund 5 Euro im Monat."], "acht": "Nur bei langlebigen Artikeln anwenden und ehrlich rechnen. Bei einem Verbrauchsartikel wirkt die Rechnung unglaubwuerdig."}, {"n": "Differenzmethode", "k": "Du sprichst nur \u00fcber den Mehrpreis, nicht \u00fcber den Gesamtpreis.", "wie": "Wenn der Kunde zwei Artikel vergleicht, nennst du nicht die vollen Preise, sondern nur den Unterschied - und was er dafuer zusaetzlich bekommt.", "bsp": ["Der Unterschied betr\u00e4gt 20 Euro \u2013 daf\u00fcr bekommen Sie die wasserdichte Membran.", "F\u00fcr 15 Euro mehr haben Sie die verst\u00e4rkte Sohle, die deutlich l\u00e4nger h\u00e4lt."], "acht": "Nur bei einem echten Vergleich einsetzen. Der Mehrwert muss den Mehrpreis erkennbar rechtfertigen."}, {"n": "Additionsmethode", "k": "Du z\u00e4hlst alle Leistungen auf, die im Preis enthalten sind.", "wie": "Der Kunde sieht, wie viel er fuer sein Geld bekommt. Besonders wirksam, wenn Serviceleistungen enthalten sind, die er nicht auf dem Schirm hat.", "bsp": ["In den 129 Euro sind enthalten: die Jacke, zwei Jahre Garantie, die kostenlose \u00c4nderung der \u00c4rmell\u00e4nge und unser Reparaturservice.", "Sie bekommen den Schuh, die Einlegesohlen und die Impr\u00e4gnierung dazu."], "acht": "Nur echte Leistungen aufzaehlen. Selbstverstaendlichkeiten aufzublasen wirkt unseri\u00f6s."}, {"n": "Multiplikationsmethode", "k": "Du rechnest den Nutzen hoch statt den Preis.", "wie": "Zeige, wie oft der Kunde den Vorteil haben wird oder was er dadurch spart. Der Nutzen waechst in der Wahrnehmung ueber den Preis hinaus.", "bsp": ["Sie fahren t\u00e4glich zur Arbeit \u2013 an rund 220 Tagen im Jahr bleiben Sie damit trocken.", "Die Impr\u00e4gnierung h\u00e4lt etwa 20 W\u00e4schen \u2013 das reicht f\u00fcr zwei Saisons."], "acht": "Realistisch bleiben. Uebertriebene Hochrechnungen durchschaut der Kunde sofort."}, {"n": "Vergleichsmethode", "k": "Du stellst den Preis neben eine allt\u00e4gliche Ausgabe.", "wie": "Der Kunde bekommt einen Massstab, den er kennt. Der Preis wirkt dadurch greifbarer.", "bsp": ["Das ist etwa so viel wie zweimal Essen gehen \u2013 daf\u00fcr halten die Schuhe mehrere Jahre.", "Rund der Preis von f\u00fcnf Kinobesuchen \u2013 aber Sie haben j\u00e4hrlich etwas davon."], "acht": "Der Vergleich muss zur Lebenswelt des Kunden passen und darf nicht belehrend klingen."}], "tabelle": {"kopf": ["Technik", "Kurzformel", "Geeignet bei"], "zeilen": [["Sandwich", "Nutzen \u2013 Preis \u2013 Nutzen", "Immer als Grundtechnik"], ["Verkleinerung", "Preis \u00f7 Nutzungsdauer", "Langlebigen, teureren Artikeln"], ["Differenz", "Nur den Mehrpreis nennen", "Vergleich zweier Artikel"], ["Addition", "Alle Leistungen aufz\u00e4hlen", "Wenn viel im Preis enthalten ist"], ["Multiplikation", "Nutzen hochrechnen", "Bei h\u00e4ufiger Nutzung"], ["Vergleich", "Neben eine bekannte Ausgabe stellen", "Wenn der Preis abstrakt wirkt"]]}, "warn": {"t": "Zwei Grundregeln", "txt": "<strong>1. Der Zeitpunkt.</strong> Nenne den Preis erst, wenn der Kunde den Nutzen kennt. Vorher ist er nur eine Zahl ohne Gegenwert.<br><br><strong>2. Die Haltung.</strong> Nenne den Preis <em>klar, deutlich und ohne Z\u00f6gern</em>. Wer leise wird, schneller spricht oder sich entschuldigt, signalisiert selbst Zweifel am Wert.<br><br>Vermeide: <em>&bdquo;leider&ldquo;, &bdquo;nicht ganz billig&ldquo;, &bdquo;da m\u00fcssen Sie \u2026 bezahlen&ldquo;</em>. Sage stattdessen schlicht: <strong>&bdquo;Der Preis betr\u00e4gt \u2026&ldquo;</strong>"}, "zu": [{"t": "Die Jacke ist wasserdicht, kostet 129 Euro und hat zwei Jahre Garantie.", "l": "Sandwich-Methode", "e": "Der Preis steht zwischen zwei Nutzenargumenten."}, {"t": "Das sind bei drei Jahren Nutzung noch nicht einmal 12 Cent am Tag.", "l": "Verkleinerungsmethode", "e": "Der Preis wird auf die Nutzungsdauer heruntergerechnet."}, {"t": "Der Unterschied betr\u00e4gt 20 Euro \u2013 daf\u00fcr bekommen Sie die Membran.", "l": "Differenzmethode", "e": "Es wird nur der Mehrpreis genannt, nicht der Gesamtpreis."}, {"t": "Enthalten sind die Jacke, die Garantie, die \u00c4nderung und der Reparaturservice.", "l": "Additionsmethode", "e": "Alle enthaltenen Leistungen werden aufgezaehlt."}, {"t": "An rund 220 Arbeitstagen im Jahr bleiben Sie damit trocken.", "l": "Multiplikationsmethode", "e": "Der Nutzen wird hochgerechnet, nicht der Preis."}, {"t": "Das ist etwa so viel wie zweimal Essen gehen.", "l": "Vergleichsmethode", "e": "Der Preis wird neben eine bekannte Alltagsausgabe gestellt."}, {"t": "F\u00fcr 15 Euro mehr haben Sie die verst\u00e4rkte Sohle.", "l": "Differenzmethode", "e": "Nur der Aufpreis wird genannt, verbunden mit dem Mehrwert."}, {"t": "Sie bekommen den Schuh, die Einlegesohlen und die Impr\u00e4gnierung dazu.", "l": "Additionsmethode", "e": "Aufzaehlung des Leistungsumfangs zum genannten Preis."}], "quiz": [{"f": "Wann nennst du den Preis am besten?", "o": ["Erst wenn der Kunde den Nutzen kennt", "Sofort nach der Begr\u00fc\u00dfung", "M\u00f6glichst gar nicht", "Direkt vor der Bedarfsermittlung \u2013 das stimmt so nicht"], "c": 0, "l": "Der Preis wirkt immer im Verhaeltnis zum erkannten Nutzen. Wer zuerst den Wert aufbaut, macht den Preis nachvollziehbar."}, {"f": "Wie funktioniert die Sandwich-Methode?", "o": ["Zwei Artikel zu einem Preis anbieten", "Den Preis in Raten aufteilen", "Nutzen \u2013 Preis \u2013 Nutzen", "Den Preis erst nach dem Abschluss nennen"], "c": 2, "l": "Der Preis steht in der Mitte, nie am Satzende. So bleibt der Nutzen als Letztes im Ohr, nicht die Zahl."}, {"f": "Ein Kunde vergleicht zwei Jacken f\u00fcr 109 und 129 Euro. Welche Technik passt?", "o": ["Verkleinerungsmethode", "Differenzmethode", "Multiplikationsmethode", "Additionsmethode"], "c": 1, "l": "Sprich nur ueber die 20 Euro Unterschied und was der Kunde dafuer zusaetzlich bekommt - nicht ueber die vollen Preise."}, {"f": "Wof\u00fcr eignet sich die Verkleinerungsmethode NICHT?", "o": ["F\u00fcr ein Paar hochwertige Wanderschuhe", "F\u00fcr eine Winterjacke", "F\u00fcr einen M\u00e4hroboter", "F\u00fcr eine Packung Impr\u00e4gnierspray"], "c": 3, "l": "Die Methode setzt eine laengere Nutzungsdauer voraus. Bei einem Verbrauchsartikel wirkt die Rechnung unglaubwuerdig."}, {"f": "Welche Formulierung ist bei der Preisnennung am besten?", "o": ["Der Preis betr\u00e4gt 129 Euro", "Das kostet leider 129 Euro", "Da m\u00fcssen Sie 129 Euro bezahlen", "Das ist mit 129 Euro nicht ganz billig"], "c": 0, "l": "Sachlich und neutral. Woerter wie 'leider', 'muessen' oder 'nicht ganz billig' werten das eigene Angebot ab."}, {"f": "Was unterscheidet Multiplikations- und Verkleinerungsmethode?", "o": ["Die Multiplikation erh\u00f6ht den Preis", "Beide bedeuten dasselbe", "Die Verkleinerung teilt den Preis, die Multiplikation rechnet den Nutzen hoch", "Die Verkleinerung gilt nur f\u00fcr Sonderangebote \u2013 dieser Weg f\u00fchrt selten zum Ziel"], "c": 2, "l": "Verkleinerung: Preis geteilt durch Nutzungsdauer. Multiplikation: Nutzen mal Haeufigkeit. Einmal wird der Preis kleiner, einmal der Nutzen groesser."}]};
+var TOTAL=D.quiz.length;var gAns=0;
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('nav.tabs button').forEach(function(b){b.classList.remove('active');});
+  var p=document.getElementById('tab-'+id);if(p)p.classList.add('active');
+  var b=document.querySelector('[data-tab="'+id+'"]');if(b)b.classList.add('active');
+  setTimeout(function(){window.scrollTo({top:0,behavior:'instant'});},0);
+  if(id==='uebung')buildZu();
+}
+document.querySelectorAll('nav.tabs button').forEach(function(b){
+  b.addEventListener('click',function(){showTab(this.getAttribute('data-tab'));});});
+document.querySelectorAll('[data-goto]').forEach(function(b){
+  b.addEventListener('click',function(){showTab(this.getAttribute('data-goto'));});});
+
+function buildTech(){
+  var c=document.getElementById('tech-box');if(!c)return;
+  D.tech.forEach(function(t,i){
+    var w=document.createElement('div');w.className='tk';
+    var b=document.createElement('button');b.className='tk-btn';
+    b.innerHTML='<span class="tk-num">'+(i+1)+'</span>'
+      +'<span class="tk-tit"><span class="tk-name">'+t.n+'</span>'
+      +'<span class="tk-kurz">'+t.k+'</span></span><span class="tk-pf"></span>';
+    var body=document.createElement('div');body.className='tk-body';
+    var h='<p>'+t.wie+'</p><div class="tk-lab">Formulierungsbeispiele</div>';
+    t.bsp.forEach(function(x){h+='<div class="bsp">'+x+'</div>';});
+    h+='<div class="acht">'+t.acht+'</div>';
+    body.innerHTML=h;
+    b.addEventListener('click',function(){
+      var off=body.style.display!=='block';
+      body.style.display=off?'block':'none';
+      b.classList.toggle('open',off);
+    });
+    w.appendChild(b);w.appendChild(body);c.appendChild(w);
+  });
+  var ab=document.getElementById('btn-alle');
+  if(ab){var offen=false;
+    ab.addEventListener('click',function(){
+      offen=!offen;
+      c.querySelectorAll('.tk-body').forEach(function(x){x.style.display=offen?'block':'none';});
+      c.querySelectorAll('.tk-btn').forEach(function(x){x.classList.toggle('open',offen);});
+      ab.textContent=offen?'Alle Techniken zuklappen':'Alle Techniken aufklappen';
+    });}
+}
+function buildZu(){
+  var c=document.getElementById('zu-box');if(!c||c.children.length>0)return;
+  var opts=D.tech.map(function(t){return t.n;});
+  D.zu.forEach(function(it,i){
+    var bl=document.createElement('div');bl.className='zu-block';
+    var nr=document.createElement('div');nr.className='zu-nr';
+    nr.textContent='Beispiel '+(i+1)+' von '+D.zu.length;
+    var tx=document.createElement('div');tx.className='zu-text';
+    tx.innerHTML='\u201e'+it.t+'\u201c';
+    var se=document.createElement('select');se.className='zu-sel';
+    var o0=document.createElement('option');o0.value='';o0.textContent='-- Technik w\u00e4hlen --';
+    se.appendChild(o0);
+    opts.forEach(function(o){
+      var op=document.createElement('option');op.value=o;op.textContent=o;se.appendChild(op);});
+    var fb=document.createElement('div');fb.className='zu-fb';
+    se.addEventListener('change',function(){
+      if(!se.value)return;
+      var ok=(se.value===it.l);
+      se.className='zu-sel '+(ok?'ok':'nok');
+      fb.textContent=ok?('\u2713 Richtig! '+it.e):('\u2717 Richtig w\u00e4re: '+it.l+'. '+it.e);
+      fb.className='zu-fb show '+(ok?'ok':'nok');
+    });
+    bl.appendChild(nr);bl.appendChild(tx);bl.appendChild(se);bl.appendChild(fb);
+    c.appendChild(bl);
+  });
+}
+var qA=0,qC=0;
+function buildQuiz(){
+  var c=document.getElementById('quiz-box');if(!c)return;
+  D.quiz.forEach(function(q,idx){
+    var bl=document.createElement('div');bl.className='quiz-block';
+    var nr=document.createElement('div');nr.className='quiz-nr';
+    nr.textContent='Frage '+(idx+1)+' von '+D.quiz.length;
+    var fr=document.createElement('div');fr.className='quiz-frage';fr.textContent=q.f;
+    var od=document.createElement('div');od.className='mc-opts';
+    var fb=document.createElement('div');fb.className='fb-box';
+    bl.appendChild(nr);bl.appendChild(fr);bl.appendChild(od);bl.appendChild(fb);
+    c.appendChild(bl);
+    q.o.forEach(function(o,oi){
+      var b=document.createElement('button');b.className='mc-btn';b.textContent=o;
+      b.addEventListener('click',function(){
+        bl.querySelectorAll('.mc-btn').forEach(function(x){x.disabled=true;});
+        var ok=(oi===q.c);
+        b.classList.add(ok?'correct':'wrong');
+        if(!ok)od.querySelectorAll('.mc-btn')[q.c].classList.add('correct');
+        fb.textContent=ok?q.l:('Nicht ganz. '+q.l);
+        fb.className='fb-box show '+(ok?'correct':'wrong');
+        qA++;if(ok)qC++;
+        if(qA===D.quiz.length)setTimeout(showResult,700);
+      });
+      od.appendChild(b);
+    });
+  });
+}
+function showResult(){
+  var card=document.getElementById('result-card');if(card)card.style.display='block';
+  var pct=Math.round(qC/D.quiz.length*100);
+  var note,txt;
+  if(pct>=92){note='1';txt='Sehr gut! Du beherrschst die Techniken sicher.';}
+  else if(pct>=81){note='2';txt='Gut! Nur noch kleine L\u00fccken.';}
+  else if(pct>=67){note='3';txt='Befriedigend. Schau dir die Techniken noch einmal an.';}
+  else if(pct>=50){note='4';txt='Ausreichend. Arbeite den Techniken-Tab noch einmal durch.';}
+  else if(pct>=30){note='5';txt='Noch nicht ausreichend. Gehe die Techniken in Ruhe durch.';}
+  else {note='6';txt='Starte am besten noch einmal von vorn.';}
+  var s=document.getElementById('res-score');
+  if(s)s.textContent=qC+' von '+D.quiz.length+' richtig ('+pct+' %)';
+  var n=document.getElementById('res-note');if(n)n.textContent='Note '+note;
+  var t=document.getElementById('res-txt');if(t)t.textContent=txt;
+  var qt=document.querySelector('[data-tab="quiz"]');if(qt)qt.classList.add('done');
+  var nv=document.querySelector('nav.tabs');var nh=nv?nv.offsetHeight:40;
+  var r=card.getBoundingClientRect();
+  window.scrollTo({top:window.pageYOffset+r.top-nh-8,behavior:'smooth'});
+}
+document.addEventListener('DOMContentLoaded',function(){buildTech();buildQuiz();});
+})();
+</script>
+</body>
+</html>
