@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Verkaufsargumentation &ndash; Techniken</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#1a1a2e;--bg:#f5f0e8;--light:#faf7f2;--ph:#7b1fa2;--phl:#f1e8f5;
+--teal:#2d6e7e;--teal-l:#e4f0f3;--gold:#b8860b;--gold-l:#fdf6dc;--red:#c84b31;--red-l:#fdecea;
+--green:#2e7d32;--green-l:#e8f5e9;--border:#d4c8a8;--shadow:0 2px 8px rgba(26,26,46,.1);--r:6px;}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--ink);line-height:1.7;}
+header{background:var(--ph);color:#fff;padding:1.7rem 1.5rem 1.4rem;text-align:center;}
+header .bc{font-family:'Trebuchet MS',sans-serif;font-size:.75rem;color:rgba(255,255,255,.72);margin-bottom:.4rem;}
+header .pnr{display:inline-flex;align-items:center;justify-content:center;width:2.1rem;height:2.1rem;border-radius:50%;background:rgba(255,255,255,.94);color:var(--ph);font-family:'Trebuchet MS',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.5rem;}
+header h1{font-size:1.65rem;font-weight:normal;margin-bottom:.25rem;}
+header .desc{font-family:'Trebuchet MS',sans-serif;font-size:.84rem;color:rgba(255,255,255,.85);max-width:600px;margin:0 auto;}
+nav.tabs{background:#fff;border-bottom:2px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:50;}
+nav.tabs::-webkit-scrollbar{display:none;}
+nav.tabs button{flex:0 0 auto;background:none;border:none;padding:.62rem .95rem;font-family:'Trebuchet MS',sans-serif;font-size:.78rem;font-weight:600;color:#666;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;}
+nav.tabs button.active,nav.tabs button:hover{color:var(--ph);border-bottom-color:var(--ph);}
+nav.tabs button.done::after{content:' \2713';color:var(--green);font-size:.7rem;}
+main{max-width:880px;margin:0 auto;padding:1.4rem 1rem 3rem;}
+.tab-panel{display:none;scroll-margin-top:50px;}.tab-panel.active{display:block;}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1.25rem 1.4rem;margin-bottom:1rem;box-shadow:var(--shadow);scroll-margin-top:50px;}
+.card h2{font-size:1.02rem;color:var(--ph);margin-bottom:.6rem;}
+.card p,.card li{font-size:.92rem;line-height:1.72;margin-bottom:.3rem;}
+.intro{font-size:.95rem;line-height:1.75;}
+.tk{border:1.5px solid var(--border);border-radius:var(--r);margin-bottom:.6rem;overflow:hidden;background:#fff;}
+.tk-btn{width:100%;display:flex;align-items:center;gap:.7rem;background:var(--phl);border:none;padding:.7rem .95rem;cursor:pointer;text-align:left;font-family:'Trebuchet MS',sans-serif;}
+.tk-btn:hover{filter:brightness(.97);}
+.tk-num{background:var(--ph);color:#fff;width:1.7rem;height:1.7rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;}
+.tk-tit{flex:1;}
+.tk-name{font-size:.92rem;font-weight:700;color:var(--ink);display:block;}
+.tk-kurz{font-size:.79rem;color:#555;font-weight:400;font-family:Georgia,serif;font-style:italic;}
+.tk-pf{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--ph);transition:transform .2s;flex-shrink:0;}
+.tk-btn.open .tk-pf{transform:rotate(90deg);}
+.tk-body{display:none;padding:.85rem 1rem;border-top:1px solid var(--border);}
+.tk-body p{font-size:.9rem;margin-bottom:.5rem;}
+.tk-lab{font-family:'Trebuchet MS',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ph);margin:.6rem 0 .25rem;}
+.bsp{background:var(--light);border-left:3px solid var(--ph);border-radius:0 4px 4px 0;padding:.45rem .75rem;margin-bottom:.3rem;font-size:.89rem;font-style:italic;}
+.acht{background:var(--gold-l);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;padding:.5rem .8rem;font-size:.86rem;margin-top:.5rem;}
+.acht::before{content:'Achtung: ';font-family:'Trebuchet MS',sans-serif;font-weight:700;font-size:.76rem;color:var(--gold);text-transform:uppercase;letter-spacing:.04em;}
+.warnbox{background:var(--red-l);border:2px solid var(--red);border-radius:var(--r);padding:1rem 1.15rem;margin:.8rem 0;position:relative;}
+.warnbox h3{font-family:'Trebuchet MS',sans-serif;font-size:.92rem;color:var(--red);margin-bottom:.45rem;}
+.warnbox p{font-size:.9rem;margin:0;}
+table.t{width:100%;border-collapse:collapse;font-size:.86rem;margin:.6rem 0;}
+table.t th{background:var(--ph);color:#fff;font-family:'Trebuchet MS',sans-serif;font-size:.78rem;padding:.45rem .6rem;text-align:left;}
+table.t td{padding:.45rem .6rem;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;overflow-wrap:break-word;}
+table.t tr:nth-child(even) td{background:var(--light);}
+.zu-block,.aufg-block{background:var(--light);border:1px solid var(--border);border-radius:var(--r);padding:.75rem .95rem;margin-bottom:.5rem;scroll-margin-top:50px;}
+.zu-nr,.aufg-nr{font-family:'Trebuchet MS',sans-serif;font-size:.72rem;font-weight:700;color:var(--ph);margin-bottom:.22rem;}
+.zu-text{font-size:.94rem;margin-bottom:.45rem;line-height:1.6;font-style:italic;overflow-wrap:break-word;}
+.zu-sel{background:#fff;border:1.5px solid var(--border);border-radius:4px;padding:.32rem .55rem;font-size:.87rem;width:100%;max-width:300px;}
+.zu-sel.ok{border-color:var(--green);background:var(--green-l);}
+.zu-sel.nok{border-color:var(--red);background:var(--red-l);}
+.zu-fb{font-size:.84rem;margin-top:.35rem;line-height:1.55;display:none;padding:.42rem .7rem;border-radius:4px;overflow-wrap:break-word;}
+.zu-fb.show{display:block;}
+.zu-fb.ok{background:var(--green-l);border-left:3px solid var(--green);color:#1b5e20;}
+.zu-fb.nok{background:var(--red-l);border-left:3px solid var(--red);color:#b71c1c;}
+.quiz-block{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:.9rem;box-shadow:var(--shadow);scroll-margin-top:50px;}
+.quiz-nr{font-family:'Trebuchet MS',sans-serif;font-size:.74rem;color:var(--ph);font-weight:700;margin-bottom:.25rem;}
+.quiz-frage{font-size:.95rem;font-weight:600;margin-bottom:.65rem;line-height:1.6;overflow-wrap:break-word;hyphens:auto;}
+.mc-opts{display:flex;flex-direction:column;gap:.3rem;}
+.mc-btn{width:100%;white-space:normal;overflow-wrap:break-word;hyphens:auto;background:var(--light);border:1.5px solid var(--border);border-radius:var(--r);padding:.5rem .82rem;font-size:.89rem;font-family:Georgia,serif;text-align:left;cursor:pointer;line-height:1.5;}
+.mc-btn:hover:not(:disabled){background:var(--phl);border-color:var(--ph);}
+.mc-btn.correct{background:var(--green-l);border-color:var(--green);color:var(--green);font-weight:600;}
+.mc-btn.wrong{background:var(--red-l);border-color:var(--red);color:var(--red);}
+.mc-btn:disabled{cursor:default;opacity:.92;}
+.fb-box{margin-top:.5rem;padding:.55rem .82rem;border-radius:var(--r);font-size:.86rem;line-height:1.6;display:none;overflow-wrap:break-word;}
+.fb-box.show{display:block;}
+.fb-box.correct{background:var(--green-l);border-left:4px solid var(--green);color:#1b5e20;}
+.fb-box.wrong{background:var(--red-l);border-left:4px solid var(--red);color:#b71c1c;}
+.result-card{background:#fff;border:2px solid var(--ph);border-radius:var(--r);padding:1.4rem;text-align:center;}
+.result-score{font-size:1.3rem;color:#555;font-family:'Trebuchet MS',sans-serif;}
+.result-note{font-size:2.3rem;font-weight:700;color:var(--ph);margin:.3rem 0;}
+.tab-nav{display:flex;justify-content:space-between;margin-top:1.3rem;border-top:1px solid var(--border);padding-top:.85rem;gap:.5rem;}
+.btn-nav{font-family:'Trebuchet MS',sans-serif;font-size:.79rem;font-weight:700;padding:.42rem .85rem;border-radius:4px;border:1.5px solid var(--ph);color:var(--ph);background:transparent;cursor:pointer;}
+.btn-nav:hover{background:var(--ph);color:#fff;}
+.btn-nav.primary{background:var(--ph);color:#fff;}
+.btn-alle{font-family:'Trebuchet MS',sans-serif;font-size:.8rem;font-weight:700;background:transparent;border:1.5px solid var(--gold);color:var(--gold);border-radius:4px;padding:.4rem .9rem;cursor:pointer;margin-bottom:.8rem;}
+.btn-alle:hover{background:var(--gold);color:#fff;}
+@media print{nav.tabs,.tab-nav,.btn-alle{display:none!important;}.tab-panel{display:block!important;}
+.tk-body{display:block!important;}.card{box-shadow:none!important;break-inside:avoid;}
+body{background:#fff!important;}@page{margin:1.5cm;}}
+@media(max-width:600px){header h1{font-size:1.32rem;}main{padding:1rem .7rem 2.5rem;}
+.mc-btn{font-size:.87rem;padding:.5rem .65rem;}.tk-name{font-size:.88rem;}}
+</style>
+</head>
+<body>
+<header>
+<div class="bc">Verk&auml;uferin und Verk&auml;ufer &rsaquo; 1. Lehrjahr &rsaquo; Lernfeld 2 &rsaquo; Vertiefung</div>
+<div class="pnr">4</div>
+<h1>Verkaufsargumentation</h1>
+<p class="desc">Nutzenargumentation und Sprachtechniken</p>
+</header>
+<nav class="tabs">
+<button class="active" data-tab="tech">Techniken</button>
+<button data-tab="ueber">&Uuml;bersicht</button>
+<button data-tab="uebung">&Uuml;bung</button>
+<button data-tab="quiz">Quiz</button>
+</nav>
+<main>
+<section class="tab-panel active" id="tab-tech">
+<div class="card"><h2>Worum es geht</h2><p class="intro">Kunden kaufen keine Eigenschaften, sondern den Vorteil, den sie davon haben. Die wichtigste Technik im Verkauf ist deshalb die &#220;bersetzung von Merkmalen in Nutzen &#8211; dazu kommen einige Sprachregeln, die &#252;ber Erfolg oder Misserfolg entscheiden.</p></div>
+<div class="card">
+<h2>Die Techniken im Einzelnen</h2>
+<p style="font-size:.86rem;color:#666;margin-bottom:.6rem;">Klicke auf eine Technik, um Erkl&auml;rung, Formulierungen und Hinweise zu sehen.</p>
+<button class="btn-alle" id="btn-alle">Alle Techniken aufklappen</button>
+<div id="tech-box"></div></div>
+<div class="tab-nav"><span></span><button class="btn-nav primary" data-goto="ueber">Weiter: &Uuml;bersicht &rarr;</button></div>
+</section>
+
+<section class="tab-panel" id="tab-ueber">
+<div class="card"><h2>Auf einen Blick</h2>
+<table class="t"><thead><tr><th>Merkmal</th><th>Vorteil</th><th>Nutzen f&#252;r den Kunden</th></tr></thead><tbody><tr><td>Gore-Tex-Membran</td><td>wasserdicht und atmungsaktiv</td><td>Sie bleiben trocken, ohne zu schwitzen</td></tr><tr><td>280 Gramm Gewicht</td><td>tr&#228;gt kaum auf</td><td>Sie k&#246;nnen sie immer im Rucksack mitnehmen</td></tr><tr><td>Rutschfeste Gummisohle</td><td>guter Halt auf nassem Boden</td><td>Sie gehen auch bei Regen sicher</td></tr><tr><td>Verst&#228;rkte N&#228;hte</td><td>h&#246;here Haltbarkeit</td><td>Sie haben l&#228;nger Freude daran</td></tr><tr><td>Waschbar bei 40 Grad</td><td>einfache Pflege</td><td>Sie sparen sich die Reinigung</td></tr></tbody></table></div>
+<div class="card"><div class="warnbox"><h3>Die wichtigste Regel</h3><p><strong>Kunden kaufen keine Merkmale &#8211; sie kaufen Nutzen.</strong><br><br>Ein Merkmal allein sagt dem Kunden nichts: <em>&bdquo;Die Jacke hat eine Membran.&ldquo;</em> Erst die &#220;bersetzung macht daraus ein Verkaufsargument: <em>&bdquo;&hellip; dadurch bleiben Sie im Regen trocken.&ldquo;</em><br><br>Pr&#252;fe jedes Argument mit der Frage: <strong>Was hat der Kunde davon?</strong> Wenn dir darauf nichts einf&#228;llt, ist es kein Argument.</p></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="tech">&larr; Techniken</button>
+<button class="btn-nav primary" data-goto="uebung">Weiter: &Uuml;bung &rarr;</button></div>
+</section>
+
+<section class="tab-panel" id="tab-uebung">
+<div class="card"><h2>Welche Technik ist das?</h2>
+<p style="font-size:.88rem;color:#555;margin-bottom:.6rem;">Ordne jede Formulierung der passenden Technik zu.</p>
+<div id="zu-box"></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="ueber">&larr; &Uuml;bersicht</button>
+<button class="btn-nav primary" data-goto="quiz">Weiter: Quiz &rarr;</button></div>
+</section>
+
+<section class="tab-panel" id="tab-quiz">
+<div class="card"><h2>Quiz</h2><div id="quiz-box"></div></div>
+<div class="card" id="result-card" style="display:none;">
+<h2 style="text-align:center;">Dein Ergebnis</h2>
+<div class="result-card"><div class="result-score" id="res-score">&ndash;</div>
+<div class="result-note" id="res-note">&ndash;</div>
+<p id="res-txt" style="font-size:.94rem;color:#444;"></p></div></div>
+<div class="tab-nav"><button class="btn-nav" data-goto="uebung">&larr; &Uuml;bung</button><span></span></div>
+</section>
+</main>
+<script>
+(function(){
+"use strict";
+var D={"nr": 4, "farbe": "#7b1fa2", "titel": "Verkaufsargumentation", "unter": "Nutzenargumentation und Sprachtechniken", "intro": "Kunden kaufen keine Eigenschaften, sondern den Vorteil, den sie davon haben. Die wichtigste Technik im Verkauf ist deshalb die \u00dcbersetzung von Merkmalen in Nutzen \u2013 dazu kommen einige Sprachregeln, die \u00fcber Erfolg oder Misserfolg entscheiden.", "tech": [{"n": "Merkmal-Vorteil-Nutzen (MVN)", "k": "Die Grundtechnik: Du \u00fcbersetzt eine Eigenschaft in einen konkreten Vorteil f\u00fcr diesen Kunden.", "wie": "Dreischritt: Das <em>Merkmal</em> ist die sachliche Eigenschaft. Der <em>Vorteil</em> ist, was diese Eigenschaft allgemein bewirkt. Der <em>Nutzen</em> ist, was sie fuer genau diesen Kunden mit seinem Bedarf bedeutet. Verbinde die Teile mit Formulierungen wie 'dadurch', 'das bedeutet fuer Sie' oder 'so haben Sie'.", "bsp": ["Der Schuh hat eine Gore-Tex-Membran <em>(Merkmal)</em> \u2013 die ist wasserdicht und atmungsaktiv <em>(Vorteil)</em> \u2013 so bleiben Ihre F\u00fc\u00dfe auf dem Schulweg trocken, ohne zu schwitzen <em>(Nutzen)</em>.", "Die Jacke wiegt nur 280 Gramm \u2013 dadurch tr\u00e4gt sie kaum auf \u2013 Sie k\u00f6nnen sie einfach im Rucksack mitnehmen.", "Der Akku h\u00e4lt 40 Minuten \u2013 das reicht f\u00fcr eine komplette Ladung \u2013 Sie m\u00fcssen bei Ihrem Rasen nicht zwischendurch aufladen."], "acht": "Der Nutzen muss zum ermittelten Bedarf passen. Ohne Bedarfsermittlung kannst du keinen echten Nutzen formulieren - dann bleibt es beim Aufzaehlen von Merkmalen."}, {"n": "Sie-Standpunkt", "k": "Du formulierst aus der Sicht des Kunden, nicht aus Sicht des Gesch\u00e4fts.", "wie": "Ersetze 'wir', 'ich' und 'das Produkt' durch 'Sie'. Der Kunde soll sich selbst im Satz wiederfinden.", "bsp": ["Statt: <em>Wir bieten zwei Jahre Garantie.</em> Besser: <strong>Sie haben zwei Jahre Garantie.</strong>", "Statt: <em>Das Modell ist sehr robust.</em> Besser: <strong>Damit sind Sie auch bei rauem Gel\u00e4nde auf der sicheren Seite.</strong>", "Statt: <em>Ich kann Ihnen das bestellen.</em> Besser: <strong>Sie bekommen es bis Donnerstag.</strong>"], "acht": "Nicht uebertreiben - jeder Satz mit 'Sie' zu beginnen wirkt kuenstlich. Es geht um die Perspektive, nicht um das Wort."}, {"n": "Positive Formulierung", "k": "Du sagst, was geht \u2013 nicht, was nicht geht.", "wie": "Negative Woerter erzeugen ein negatives Bild, auch wenn die Aussage sachlich richtig ist. Formuliere um: 'nicht teuer' wird zu 'guenstig', 'kein Problem' wird zu 'gerne'.", "bsp": ["Statt: <em>Das haben wir nicht da.</em> Besser: <strong>Das kann ich Ihnen bis Freitag besorgen.</strong>", "Statt: <em>Da kann ich Ihnen nicht helfen.</em> Besser: <strong>Meine Kollegin in der Abteilung wei\u00df da mehr.</strong>", "Statt: <em>Kein Problem.</em> Besser: <strong>Sehr gerne.</strong>"], "acht": "Reizwoerter meiden: Problem, Fehler, teuer, Vertrag, Kosten, leider, muessen. Sie loesen beim Kunden Abwehr aus."}, {"n": "Bildhafte Sprache", "k": "Du erzeugst ein Bild im Kopf des Kunden.", "wie": "Konkrete Bilder bleiben besser haften als abstrakte Angaben. Der Kunde stellt sich die Nutzung vor und fuehlt sich schon als Besitzer.", "bsp": ["Stellen Sie sich vor, Sie stehen morgens im Regen an der Bushaltestelle \u2013 und bleiben trocken.", "Der Stoff f\u00fchlt sich an wie ein zweites Hemd.", "In den Rucksack passt bequem Ihr Laptop plus Wechselsachen."], "acht": "Bilder muessen zur Lebenswelt des Kunden passen. Wer einem Rentner Bilder vom Festivalbesuch malt, verfehlt ihn."}, {"n": "Beweis und Demonstration", "k": "Du zeigst statt nur zu behaupten.", "wie": "Vorfuehren, ausprobieren lassen, Pruefsiegel oder Testurteile zeigen. Selbst Erlebtes ueberzeugt staerker als jede Beschreibung.", "bsp": ["Sehen Sie, so leicht l\u00e4sst sich der Verschluss mit einer Hand \u00f6ffnen.", "Stiftung Warentest hat das Modell mit Gut bewertet.", "Nehmen Sie den Schuh einmal in die Hand \u2013 sp\u00fcren Sie, wie leicht er ist?"], "acht": "Vor der Vorfuehrung ueben. Eine misslungene Demonstration schadet mehr, als sie nutzt."}, {"n": "Argumentkette", "k": "Du reihst wenige starke Argumente sinnvoll aneinander.", "wie": "Zwei bis drei Argumente, die zum Bedarf passen. Beginne mit dem staerksten. Nach jedem Argument eine kurze Pause, damit es wirken kann.", "bsp": ["Der Schuh ist wasserdicht \u2013 und dabei nur 320 Gramm leicht \u2013 und die Sohle ist rutschfest. Genau das, was Sie f\u00fcr den t\u00e4glichen Weg brauchen."], "acht": "Weniger ist mehr. Wer zehn Argumente nennt, entwertet die starken. Alles, was nicht zum Bedarf passt, laesst du weg."}], "tabelle": {"kopf": ["Merkmal", "Vorteil", "Nutzen f\u00fcr den Kunden"], "zeilen": [["Gore-Tex-Membran", "wasserdicht und atmungsaktiv", "Sie bleiben trocken, ohne zu schwitzen"], ["280 Gramm Gewicht", "tr\u00e4gt kaum auf", "Sie k\u00f6nnen sie immer im Rucksack mitnehmen"], ["Rutschfeste Gummisohle", "guter Halt auf nassem Boden", "Sie gehen auch bei Regen sicher"], ["Verst\u00e4rkte N\u00e4hte", "h\u00f6here Haltbarkeit", "Sie haben l\u00e4nger Freude daran"], ["Waschbar bei 40 Grad", "einfache Pflege", "Sie sparen sich die Reinigung"]]}, "warn": {"t": "Die wichtigste Regel", "txt": "<strong>Kunden kaufen keine Merkmale \u2013 sie kaufen Nutzen.</strong><br><br>Ein Merkmal allein sagt dem Kunden nichts: <em>&bdquo;Die Jacke hat eine Membran.&ldquo;</em> Erst die \u00dcbersetzung macht daraus ein Verkaufsargument: <em>&bdquo;&hellip; dadurch bleiben Sie im Regen trocken.&ldquo;</em><br><br>Pr\u00fcfe jedes Argument mit der Frage: <strong>Was hat der Kunde davon?</strong> Wenn dir darauf nichts einf\u00e4llt, ist es kein Argument."}, "zu": [{"t": "Die Sohle ist rutschfest \u2013 dadurch stehen Sie auch bei N\u00e4sse sicher.", "l": "Merkmal-Vorteil-Nutzen (MVN)", "e": "Merkmal wird in einen konkreten Nutzen fuer den Kunden uebersetzt."}, {"t": "Sie haben darauf zwei Jahre Garantie.", "l": "Sie-Standpunkt", "e": "Aus Kundensicht formuliert statt 'Wir geben zwei Jahre Garantie'."}, {"t": "Das kann ich Ihnen bis Freitag besorgen.", "l": "Positive Formulierung", "e": "Sagt was geht, statt 'Das haben wir nicht da'."}, {"t": "Der Stoff f\u00fchlt sich an wie ein zweites Hemd.", "l": "Bildhafte Sprache", "e": "Erzeugt ein Bild und ein Gefuehl im Kopf des Kunden."}, {"t": "Sehen Sie, so leicht l\u00e4sst sich der Verschluss \u00f6ffnen.", "l": "Beweis und Demonstration", "e": "Zeigen statt behaupten - der Kunde erlebt es selbst."}, {"t": "Stiftung Warentest hat das Modell mit Gut bewertet.", "l": "Beweis und Demonstration", "e": "Unabhaengiges Testurteil als Beleg fuer die Qualitaet."}, {"t": "Sehr gerne \u2013 das mache ich Ihnen fertig.", "l": "Positive Formulierung", "e": "Statt 'Kein Problem' - vermeidet das Reizwort Problem."}, {"t": "Stellen Sie sich vor, Sie stehen im Regen \u2013 und bleiben trocken.", "l": "Bildhafte Sprache", "e": "Der Kunde stellt sich die Nutzung konkret vor."}], "quiz": [{"f": "Was ist bei der MVN-Technik der Nutzen?", "o": ["Was die Eigenschaft f\u00fcr diesen Kunden konkret bedeutet", "Der Preis im Verh\u00e4ltnis zur Leistung \u2013 das stimmt so nicht", "Die sachliche Eigenschaft der Ware", "Die Garantiedauer des Herstellers"], "c": 0, "l": "Merkmal = Eigenschaft, Vorteil = allgemeine Wirkung, Nutzen = was es fuer genau diesen Kunden mit seinem Bedarf bedeutet."}, {"f": "Welche Formulierung entspricht dem Sie-Standpunkt?", "o": ["Wir bieten zwei Jahre Garantie", "Das Produkt hat zwei Jahre Garantie", "Sie haben zwei Jahre Garantie", "Die Garantie betr\u00e4gt zwei Jahre"], "c": 2, "l": "Der Kunde soll sich selbst im Satz wiederfinden. 'Sie haben' statt 'wir bieten' - dieselbe Information, andere Wirkung."}, {"f": "Warum solltest du das Wort \u201eProblem\u201c vermeiden?", "o": ["Weil es zu lang ist", "Weil es ein Reizwort ist und Abwehr ausl\u00f6st", "Weil es nur im Gro\u00dfhandel \u00fcblich ist \u2013 das stimmt so nicht", "Weil es zu f\u00f6rmlich klingt"], "c": 1, "l": "Reizwoerter wie Problem, Fehler, teuer oder leider erzeugen ein negatives Bild. Sage 'Sehr gerne' statt 'Kein Problem'."}, {"f": "Wie viele Argumente solltest du nennen?", "o": ["So viele wie m\u00f6glich \u2013 davon ist eher abzuraten", "Genau eines", "Mindestens acht", "Zwei bis drei starke, die zum Bedarf passen"], "c": 3, "l": "Wenige starke Argumente wirken besser als viele schwache. Wer zehn Argumente nennt, entwertet die starken."}, {"f": "Was macht eine Demonstration so wirksam?", "o": ["Der Kunde erlebt den Nutzen selbst statt ihn nur zu h\u00f6ren", "Sie spart Zeit im Verkaufsgespr\u00e4ch", "Sie ersetzt die Bedarfsermittlung", "Sie senkt den Preis in der Wahrnehmung was hier nicht zutrifft"], "c": 0, "l": "Selbst Erlebtes ueberzeugt staerker als jede Beschreibung. Wichtig: die Vorfuehrung vorher ueben."}, {"f": "Ein Kunde sucht eine Jacke f\u00fcrs Radfahren. Welche Argumentation ist am besten?", "o": ["Die Jacke besteht aus Polyester mit 20.000er Wassers\u00e4ule \u2013 das stimmt so nicht", "Die Jacke ist unser meistverkauftes Modell", "Die Jacke ist wasserdicht \u2013 so bleiben Sie auf dem Rad trocken", "Die Jacke gibt es in f\u00fcnf Farben"], "c": 2, "l": "Nur hier wird ein Merkmal mit dem Nutzen fuer den ermittelten Bedarf verbunden. Technische Daten allein sagen dem Kunden nichts."}]};
+var TOTAL=D.quiz.length;var gAns=0;
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('nav.tabs button').forEach(function(b){b.classList.remove('active');});
+  var p=document.getElementById('tab-'+id);if(p)p.classList.add('active');
+  var b=document.querySelector('[data-tab="'+id+'"]');if(b)b.classList.add('active');
+  setTimeout(function(){window.scrollTo({top:0,behavior:'instant'});},0);
+  if(id==='uebung')buildZu();
+}
+document.querySelectorAll('nav.tabs button').forEach(function(b){
+  b.addEventListener('click',function(){showTab(this.getAttribute('data-tab'));});});
+document.querySelectorAll('[data-goto]').forEach(function(b){
+  b.addEventListener('click',function(){showTab(this.getAttribute('data-goto'));});});
+
+function buildTech(){
+  var c=document.getElementById('tech-box');if(!c)return;
+  D.tech.forEach(function(t,i){
+    var w=document.createElement('div');w.className='tk';
+    var b=document.createElement('button');b.className='tk-btn';
+    b.innerHTML='<span class="tk-num">'+(i+1)+'</span>'
+      +'<span class="tk-tit"><span class="tk-name">'+t.n+'</span>'
+      +'<span class="tk-kurz">'+t.k+'</span></span><span class="tk-pf"></span>';
+    var body=document.createElement('div');body.className='tk-body';
+    var h='<p>'+t.wie+'</p><div class="tk-lab">Formulierungsbeispiele</div>';
+    t.bsp.forEach(function(x){h+='<div class="bsp">'+x+'</div>';});
+    h+='<div class="acht">'+t.acht+'</div>';
+    body.innerHTML=h;
+    b.addEventListener('click',function(){
+      var off=body.style.display!=='block';
+      body.style.display=off?'block':'none';
+      b.classList.toggle('open',off);
+    });
+    w.appendChild(b);w.appendChild(body);c.appendChild(w);
+  });
+  var ab=document.getElementById('btn-alle');
+  if(ab){var offen=false;
+    ab.addEventListener('click',function(){
+      offen=!offen;
+      c.querySelectorAll('.tk-body').forEach(function(x){x.style.display=offen?'block':'none';});
+      c.querySelectorAll('.tk-btn').forEach(function(x){x.classList.toggle('open',offen);});
+      ab.textContent=offen?'Alle Techniken zuklappen':'Alle Techniken aufklappen';
+    });}
+}
+function buildZu(){
+  var c=document.getElementById('zu-box');if(!c||c.children.length>0)return;
+  var opts=D.tech.map(function(t){return t.n;});
+  D.zu.forEach(function(it,i){
+    var bl=document.createElement('div');bl.className='zu-block';
+    var nr=document.createElement('div');nr.className='zu-nr';
+    nr.textContent='Beispiel '+(i+1)+' von '+D.zu.length;
+    var tx=document.createElement('div');tx.className='zu-text';
+    tx.innerHTML='\u201e'+it.t+'\u201c';
+    var se=document.createElement('select');se.className='zu-sel';
+    var o0=document.createElement('option');o0.value='';o0.textContent='-- Technik w\u00e4hlen --';
+    se.appendChild(o0);
+    opts.forEach(function(o){
+      var op=document.createElement('option');op.value=o;op.textContent=o;se.appendChild(op);});
+    var fb=document.createElement('div');fb.className='zu-fb';
+    se.addEventListener('change',function(){
+      if(!se.value)return;
+      var ok=(se.value===it.l);
+      se.className='zu-sel '+(ok?'ok':'nok');
+      fb.textContent=ok?('\u2713 Richtig! '+it.e):('\u2717 Richtig w\u00e4re: '+it.l+'. '+it.e);
+      fb.className='zu-fb show '+(ok?'ok':'nok');
+    });
+    bl.appendChild(nr);bl.appendChild(tx);bl.appendChild(se);bl.appendChild(fb);
+    c.appendChild(bl);
+  });
+}
+var qA=0,qC=0;
+function buildQuiz(){
+  var c=document.getElementById('quiz-box');if(!c)return;
+  D.quiz.forEach(function(q,idx){
+    var bl=document.createElement('div');bl.className='quiz-block';
+    var nr=document.createElement('div');nr.className='quiz-nr';
+    nr.textContent='Frage '+(idx+1)+' von '+D.quiz.length;
+    var fr=document.createElement('div');fr.className='quiz-frage';fr.textContent=q.f;
+    var od=document.createElement('div');od.className='mc-opts';
+    var fb=document.createElement('div');fb.className='fb-box';
+    bl.appendChild(nr);bl.appendChild(fr);bl.appendChild(od);bl.appendChild(fb);
+    c.appendChild(bl);
+    q.o.forEach(function(o,oi){
+      var b=document.createElement('button');b.className='mc-btn';b.textContent=o;
+      b.addEventListener('click',function(){
+        bl.querySelectorAll('.mc-btn').forEach(function(x){x.disabled=true;});
+        var ok=(oi===q.c);
+        b.classList.add(ok?'correct':'wrong');
+        if(!ok)od.querySelectorAll('.mc-btn')[q.c].classList.add('correct');
+        fb.textContent=ok?q.l:('Nicht ganz. '+q.l);
+        fb.className='fb-box show '+(ok?'correct':'wrong');
+        qA++;if(ok)qC++;
+        if(qA===D.quiz.length)setTimeout(showResult,700);
+      });
+      od.appendChild(b);
+    });
+  });
+}
+function showResult(){
+  var card=document.getElementById('result-card');if(card)card.style.display='block';
+  var pct=Math.round(qC/D.quiz.length*100);
+  var note,txt;
+  if(pct>=92){note='1';txt='Sehr gut! Du beherrschst die Techniken sicher.';}
+  else if(pct>=81){note='2';txt='Gut! Nur noch kleine L\u00fccken.';}
+  else if(pct>=67){note='3';txt='Befriedigend. Schau dir die Techniken noch einmal an.';}
+  else if(pct>=50){note='4';txt='Ausreichend. Arbeite den Techniken-Tab noch einmal durch.';}
+  else if(pct>=30){note='5';txt='Noch nicht ausreichend. Gehe die Techniken in Ruhe durch.';}
+  else {note='6';txt='Starte am besten noch einmal von vorn.';}
+  var s=document.getElementById('res-score');
+  if(s)s.textContent=qC+' von '+D.quiz.length+' richtig ('+pct+' %)';
+  var n=document.getElementById('res-note');if(n)n.textContent='Note '+note;
+  var t=document.getElementById('res-txt');if(t)t.textContent=txt;
+  var qt=document.querySelector('[data-tab="quiz"]');if(qt)qt.classList.add('done');
+  var nv=document.querySelector('nav.tabs');var nh=nv?nv.offsetHeight:40;
+  var r=card.getBoundingClientRect();
+  window.scrollTo({top:window.pageYOffset+r.top-nh-8,behavior:'smooth'});
+}
+document.addEventListener('DOMContentLoaded',function(){buildTech();buildQuiz();});
+})();
+</script>
+</body>
+</html>
